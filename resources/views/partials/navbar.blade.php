@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="{{ url('/') }}">WISAGA</a>
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ url('/') }}">
+    <img src="{{ asset('img/logo.jpg') }}" alt="Logo Wisaga" height="40" class="me-2">
+    WISAGA
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
