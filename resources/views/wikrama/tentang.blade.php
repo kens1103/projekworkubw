@@ -2,31 +2,36 @@
 
 @section('content')
 
-<!-- Hero Section for About Page -->
-<section class="py-5 bg-light" id="about">
-  <div class="container">
+<!-- Hero Section Full Width untuk About Page -->
+<section class="bg-light" id="about">
 
-    <!-- Slider Foto -->
-    <div id="aboutCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="2000">
-        <div class="carousel-inner rounded-4 shadow" style="height: 400px;">
-            <div class="carousel-item active">
-                <img src="/img/satpam.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Slide 1" data-aos="fade-up">
-            </div>
-            <div class="carousel-item">
-                <img src="/img/ruangpmn.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Slide 2" data-aos="fade-up">
-            </div>
-            <div class="carousel-item">
-                <img src="/img/ruangtjkt.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Slide 3" data-aos="fade-up">
-            </div>
-        </div>
-    </div>
+  <!-- Gambar Full dengan Teks -->
+  <div class="position-relative w-100 overflow-hidden" style="height: 450px;">
+    <img src="/img/index.png" class="w-100 h-100 object-fit-cover" alt="About Image">
 
-    <!-- Section Foto dan Teks -->
-    <h1 class="display-4 text-center mb-5 fw-bold">Tentang Kami</h1>
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6" data-aos="fade-right">
-        <img src="/img/produklayanan.jpg" alt="Tentang Kami" class="img-fluid rounded-4 shadow">
-      </div>
+    <!-- Overlay hitam transparan -->
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+    
+    <!-- Teks di tengah gambar -->
+    <<div class="position-absolute top-50 start-50 translate-middle text-white text-center" data-aos="fade-up">
+  <h1 class="display-4 fw-bold">TefaWisaga</h1>
+  <p class="fs-5 mt-3">Tempat Berkarya, Belajar, dan Berkembang Bersama</p>
+</div>
+  </div>
+</section>
+<!-- Judul Section -->
+<div class="text-center my-5 px-3" data-aos="fade-down">
+  <h1 class="fs-1 fw-bold position-relative d-inline-block">
+    Tentang Kami
+    <span class="position-absolute start-50 translate-middle-x" style="bottom: -8px; width: 150px; height: 3px; background-color: #0d6efd;"></span>
+  </h1>
+</div>
+
+<!-- Section Gambar dan Teks -->
+<div class="row align-items-center g-5">
+  <div class="col-lg-6" data-aos="fade-right">
+    <img src="/img/produklayanan.jpg" alt="Tentang Kami" class="img-fluid rounded-4 shadow">
+  </div>
       <div class="col-lg-6" data-aos="fade-left">
         <p class="lead text-muted">
         Usaha Bersama Wikrama adalah unit bisnis yang dikelola oleh Teaching Factory 
@@ -48,7 +53,7 @@
 <section class="py-5">
   <div class="container">
     <div class="row g-4 align-items-stretch">
-    <h1 class="display-4 text-center mb-5 fw-bold">Visi & Misi</h1>
+    <h1 class="display-5 text-center mb-5 fw-bold">Visi & Misi</h1>
       
         <!-- Misi -->
         <div class="col-12 col-md-6">
