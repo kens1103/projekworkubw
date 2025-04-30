@@ -10,7 +10,7 @@
   <div class="container">
     <div class="row gy-4">
       <div class="col-lg-3 col-md-6">
-        <h4 class="text-dark">Wikrama Satu Garut</h4>
+        <h4 class="text-dark">Wikrama 1 Garut</h4>
         <p>
           Jalan Otto Iskandardinata kampung tanjung, RT.003/RW.013, Pasawahan, Kec. Tarogong Kaler<br>
           Garut, Jawa Barat 44151<br><br>
@@ -52,7 +52,7 @@
 
   <div class="container mt-4 pb-3">
     <div class="text-center mb-2">
-      &copy; 2025 <strong class="text-dark">Wikrama Satu Garut</strong>. All Rights Reserved.
+      &copy; 2025 <strong class="text-dark">Wikrama 1 Garut</strong>. All Rights Reserved.
     </div>
   </div>
 </footer>
