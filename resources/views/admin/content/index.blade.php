@@ -1,51 +1,88 @@
-@extends('layouts.admin.app')
-
-@section('content')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+        .sidebar {
+            height: 100vh;
+            background: #343a40;
+            color: white;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+        }
+        .sidebar a:hover {
+            background: #495057;
+        }
+        .content {
+            padding: 30px;
+        }
+        .card {
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
 <div class="container-fluid">
-    <h2 class="mb-4">Daftar Konten</h2>
-
     <div class="row">
-        <div class="col-12">
-            <a href="{{ route('admin.content.create') }}" class="btn btn-primary mb-3">
-                <i class="bi bi-plus-circle"></i> Tambah Konten
-            </a>
+        <!-- Sidebar -->
+        <div class="col-md-2 sidebar">
+            <h4 class="text-center mb-4">Admin Panel</h4>
+            <a href="#">Dashboard</a>
+            <a href="#">Kelola User</a>
+            <a href="#">Kelola Gambar</a>
+            <a href="#">Kelola Komentar</a>
+            <a href="{{ url('/logout') }}" class="text-danger mt-5">Logout</a>
+        </div>
 
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Judul</th>
-                                <th>Deskripsi</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($contents as $content)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $content->judul }}</td>
-                                <td>{{ Str::limit($content->deskripsi, 50) }}</td>
-                                <td>
-                                    <a href="{{ route('admin.content.edit', $content->id) }}" class="btn btn-warning btn-sm">
-                                        <i class="bi bi-pencil"></i> Edit
-                                    </a>
-                                    <form action="{{ route('admin.content.destroy', $content->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus konten ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash"></i> Hapus
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+        <!-- Content -->
+        <div class="col-md-10 content">
+            <h2>Selamat Datang, Admin!</h2>
+            <p class="text-muted">Kelola aplikasi Anda dengan mudah dari sini.</p>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Total User</h5>
+                            <p class="card-text fs-3">120</p>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="col-md-4">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Gambar</h5>
+                            <p class="card-text fs-3">58</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card text-white bg-warning mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Komentar</h5>
+                            <p class="card-text fs-3">210</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-info mt-4">
+                <strong>Info!</strong> Pastikan untuk memoderasi semua gambar dan komentar secara rutin yaa.
             </div>
         </div>
     </div>
 </div>
-@endsection
+</body>
+</html>

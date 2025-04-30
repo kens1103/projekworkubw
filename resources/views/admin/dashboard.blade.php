@@ -1,75 +1,88 @@
-@extends('layouts.admin.app')
-
-@section('content')
-<div class="container">
-    <h2 class="mb-4">Dashboard Admin</h2>
-
-    <!-- Konten Inovatif, Kolaboratif, Global Mindset -->
-    <div class="row mb-5">
-        @foreach ($contents as $content)
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>{{ $content->title }}</h5>
-                        <p>{{ $content->description }}</p>
-
-                        <!-- Edit Konten -->
-                        <form action="{{ route('admin.updateContent', $content->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <input type="text" name="title" value="{{ $content->title }}" class="form-control mb-2">
-                            <textarea name="description" class="form-control">{{ $content->description }}</textarea>
-                            <button type="submit" class="btn btn-warning mt-2">Update</button>
-                        </form>
-
-                        <!-- Hapus Konten -->
-                        <form action="{{ route('admin.deleteContent', $content->id) }}" method="POST" class="mt-2">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-
-        <!-- Tambah Konten Baru -->
-        <div class="col-md-4">
-            <form action="{{ route('admin.addContent') }}" method="POST">
-                @csrf
-                <input type="text" name="title" class="form-control mb-2" placeholder="Judul">
-                <textarea name="description" class="form-control" placeholder="Deskripsi"></textarea>
-                <button type="submit" class="btn btn-success mt-2">Tambah Konten</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Foto Portofolio -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+        .sidebar {
+            height: 100vh;
+            background: #343a40;
+            color: white;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+        }
+        .sidebar a:hover {
+            background: #495057;
+        }
+        .content {
+            padding: 30px;
+        }
+        .card {
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
     <div class="row">
-        @foreach ($portofolios as $portofolio)
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ Storage::url($portofolio->image) }}" class="card-img-top" alt="Portofolio Image">
-                    <div class="card-body">
-                        <!-- Hapus Foto -->
-                        <form action="{{ route('admin.deletePortofolio', $portofolio->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Hapus Foto</button>
-                        </form>
+        <!-- Sidebar -->
+        <div class="col-md-2 sidebar">
+            <h4 class="text-center mb-4">Admin Panel</h4>
+            <a href="#">Dashboard</a>
+            <a href="#">Kelola User</a>
+            <a href="#">Kelola Gambar</a>
+            <a href="#">Kelola Komentar</a>
+            <a href="{{ url('/logout') }}" class="text-danger mt-5">Logout</a>
+        </div>
+
+        <!-- Content -->
+        <div class="col-md-10 content">
+            <h2>Selamat Datang, Admin!</h2>
+            <p class="text-muted">Kelola aplikasi Anda dengan mudah dari sini.</p>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Total User</h5>
+                            <p class="card-text fs-3">120</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Gambar</h5>
+                            <p class="card-text fs-3">58</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card text-white bg-warning mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Komentar</h5>
+                            <p class="card-text fs-3">210</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        @endforeach
 
-        <!-- Tambah Foto Baru -->
-        <div class="col-md-4">
-            <form action="{{ route('admin.addPortofolio') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="file" name="image" class="form-control mb-2">
-                <button type="submit" class="btn btn-success mt-2">Tambah Foto</button>
-            </form>
+            <div class="alert alert-info mt-4">
+                <strong>Info!</strong> Pastikan untuk memoderasi semua gambar dan komentar secara rutin yaa.
+            </div>
         </div>
     </div>
 </div>
-@endsection
+</body>
+</html>

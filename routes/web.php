@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\PortofolioController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,13 @@ Route::get('/kontak', function () {
     Route::get('/dashboard/portofolio/create', [PortofolioController::class, 'create'])->name('admin.portofolio.create');
     Route::post('/dashboard/portofolio', [PortofolioController::class, 'store'])->name('admin.addPortofolio');
     Route::delete('/dashboard/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('admin.deletePortofolio');
-    Route::resource('portofolio', PortofolioController::class);
+    
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/admin/dashboard', function () {
+            return view('admin.dashboard');
+        });
+    });
