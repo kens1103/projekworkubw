@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\KontakController as AdminKontakController;
+use App\Http\Controllers\KontakController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +54,11 @@ Route::get('/kontak', function () {
     Route::get('/dashboard/portofolio/create', [PortofolioController::class, 'create'])->name('admin.portofolio.create');
     Route::post('/dashboard/portofolio', [PortofolioController::class, 'store'])->name('admin.addPortofolio');
     Route::delete('/dashboard/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('admin.deletePortofolio');
+
+    Route::get('/kontak', [KontakController::class, 'show'])->name('kontak.show');
+    Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
+    Route::post('/kontak/kirim', [KontakController::class, 'kirimPesan'])->name('kontak.kirim');
+    Route::get('/admin/kontak/pesan', [AdminKontakController::class, 'lihatPesan'])->name('admin.kontak.pesan');
     
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
@@ -63,6 +71,10 @@ Route::get('/kontak', function () {
     
         Route::get('/admin/home/edit', [AdminHomeController::class, 'edit'])->name('admin.home.edit');
         Route::post('/admin/home/update', [AdminHomeController::class, 'update'])->name('admin.home.update');
+
+        Route::get('/kontak/edit', [AdminKontakController::class, 'edit'])->name('admin.kontak.edit');
+        Route::put('/kontak/update', [AdminKontakController::class, 'update'])->name('admin.kontak.update');
+
     });
     Route::get('/index', [AboutController::class, 'showHome'])->name('home.show');
     Route::get('/tentang', [AboutController::class, 'showAbout'])->name('about.show');

@@ -37,6 +37,15 @@
         .sidebar a:hover {
             background: #495057;
         }
+        .dropdown-menu {
+            background-color: #343a40;
+        }
+        .dropdown-menu .dropdown-item {
+            color: white;
+        }
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #495057;
+        }
         .content-wrapper {
             flex-grow: 1;
             padding: 30px;
@@ -49,21 +58,7 @@
 <body>
     <div class="d-flex">
         {{-- Sidebar --}}
-        <div class="col-md-2 sidebar">
-            <h4 class="text-center mb-4">Admin Panel</h4>
-            <a href="#">Dashboard</a>
-            <a href="{{ route('admin.home.edit') }}">Home</a>
-            <a href="{{ route('admin.about.edit') }}">Tentang</a>
-            <a href="#">Produk & Layanan</a>
-            <a href="#">Portofolio</a>
-            <a href="#">Kontak</a>
-            <form action="{{ route('logout') }}" method="POST" class="mt-5">
-                @csrf
-                <button type="submit" class="btn btn-link text-danger p-0" style="text-decoration: none;">
-                    Logout
-                </button>
-            </form>
-        </div>
+        @include('partials.sidebar')
 
         {{-- Main Content --}}
         <div class="col-md-10 content-wrapper">

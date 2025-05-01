@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 <nav class="d-flex flex-column vh-100 sidebar" id="sidebar" style="background: #343a40;">
     <div class="p-3 border-bottom d-flex justify-content-between align-items-center text-white">
-        <h4 class="fw-bold mb-0">Admin Panel</h4>
+        <h4 class="fw-bold mb-0">Panel Admin</h4>
         <button class="btn btn-sm d-md-none text-white" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse" aria-controls="menuCollapse" aria-expanded="true" aria-label="Toggle navigation">
             <i class="bi bi-list fs-3"></i>
         </button>
@@ -10,7 +10,7 @@
     <div class="collapse d-md-block show" id="menuCollapse">
         <ul class="nav nav-pills flex-column mb-auto">
             <li><a href="{{ route('admin.dashboard') }}" class="nav-link text-white">Dashboard</a></li>
-            <li><a href="{{ route('admin.home.edit') }}" class="nav-link text-white">Home</a></li>
+            <li><a href="{{ route('admin.home.edit') }}" class="nav-link text-white">Beranda</a></li>
             <li><a href="#" class="nav-link text-white">Tentang</a></li>
             <li><a href="#" class="nav-link text-white">Produk & Layanan</a></li>
             <li><a href="#" class="nav-link text-white">Portofolio</a></li>
