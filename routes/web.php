@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
@@ -63,4 +64,6 @@ Route::get('/kontak', function () {
         Route::get('/home/edit', [AdminHomeController::class, 'edit'])->name('admin.home.edit');
         Route::post('/home/update', [AdminHomeController::class, 'update'])->name('admin.home.update');
     });
-    
+    Route::get('/tentang', [AboutController::class, 'showAbout'])->name('about.show');
+    Route::get('/admin/about/edit', [AboutController::class, 'edit'])->name('admin.about.edit');
+Route::put('/admin/about/update', [AboutController::class, 'update'])->name('about.update');
