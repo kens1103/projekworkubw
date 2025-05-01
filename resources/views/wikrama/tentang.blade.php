@@ -4,26 +4,23 @@
 
 <!-- Hero Section Full Width untuk About Page -->
 <section class="bg-light" id="about">
-
   <!-- Gambar Full dengan Teks -->
   <div class="position-relative w-100 overflow-hidden" style="height: 450px;">
-    <img src="/img/index.png" class="w-100 h-100 object-fit-cover" alt="About Image">
-
-    <!-- Overlay hitam transparan -->
-    <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
-    
-    <!-- Teks di tengah gambar -->
-    <<div class="position-absolute top-50 start-50 translate-middle text-white text-center" data-aos="fade-up">
-  <h1 class="display-4 fw-bold">TefaWisaga</h1>
-  <p class="fs-5 mt-3">Tempat Berkarya, Belajar, dan Berkembang Bersama</p>
-</div>
+    <img src="/img/header.jpg" class="w-100 h-100 object-fit-cover" alt="About Image">
+      <!-- Overlay hitam transparan -->
+      <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+      <!-- Teks di tengah gambar -->
+        <div class="position-absolute top-50 start-50 translate-middle text-white text-center" data-aos="fade-up">
+          <h1 class="display-4 fw-bold">TeFa Wisaga</h1>
+          <p class="fs-5 mt-3">Tempat Berkarya, Belajar, dan Berkembang Bersama</p>
+        </div>
   </div>
 </section>
+
 <!-- Judul Section -->
 <div class="text-center my-5 px-3" data-aos="fade-down">
   <h1 class="fs-1 fw-bold position-relative d-inline-block">
     Tentang Kami
-    <span class="position-absolute start-50 translate-middle-x" style="bottom: -8px; width: 150px; height: 3px; background-color: #0d6efd;"></span>
   </h1>
 </div>
 

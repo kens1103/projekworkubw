@@ -59,11 +59,18 @@
 
 @section('content')
 
-<!-- Hero Section for Portfolio Page -->
-<section class="py-5 bg-light" id="portfolio">
-  <div class="container text-center">
-    <h1 class="display-4 fw-bold">Portofolio Kami</h1>
-    <p class="lead">Berikut adalah beberapa proyek terbaik yang telah kami kerjakan.</p>
+<!-- Hero Section Full Width untuk About Page -->
+<section class="bg-light" id="about">
+  <!-- Gambar Full dengan Teks -->
+  <div class="position-relative w-100 overflow-hidden" style="height: 450px;">
+    <img src="/img/header.jpg" class="w-100 h-100 object-fit-cover" alt="About Image">
+      <!-- Overlay hitam transparan -->
+      <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+      <!-- Teks di tengah gambar -->
+        <div class="position-absolute top-50 start-50 translate-middle text-white text-center" data-aos="fade-up">
+          <h1 class="display-5 fw-bold">Portofolio</h1>
+          <p class="fs-6 mt-3">Menampilkan hasil karya terbaik dari UBW TEFA Wikrama Satu Garut.</p>
+        </div>
   </div>
 </section>
 
@@ -71,7 +78,7 @@
 <section class="py-5">
   <div class="container">
     <div class="section-title text-center mb-5">
-      <h2 class="fw-bold">Filter Portfolio</h2>
+      <h2 class="fw-bold">Portofolio</h2>
     </div>
 
     <!-- Portfolio Gallery -->

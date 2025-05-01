@@ -11,18 +11,25 @@
 </style>
 @section('content')
 
-<!-- Hero Section for Produk Page -->
-<section class="py-5 bg-light" id="produk">
-  <div class="container text-center">
-    <h1 class="display-4 fw-bold">Produk & Layanan Kami</h1>
-    <p class="lead">"Bersama UBW TEFA Wikrama Satu Garut, mari ciptakan kolaborasi untuk masa depan yang lebih baik. Hubungi kami untuk informasi lebih lanjut atau kerja sama!"</p>
+<!-- Hero Section Full Width untuk About Page -->
+<section class="bg-light" id="about">
+  <!-- Gambar Full dengan Teks -->
+  <div class="position-relative w-100 overflow-hidden" style="height: 450px;">
+    <img src="/img/header.jpg" class="w-100 h-100 object-fit-cover" alt="About Image">
+      <!-- Overlay hitam transparan -->
+      <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+      <!-- Teks di tengah gambar -->
+        <div class="position-absolute top-50 start-50 translate-middle text-white text-center" data-aos="fade-up">
+          <h1 class="display-5 fw-bold">Produk & Layanan Kami</h1>
+          <p class="fs-6 mt-3">UBW TEFA Wikrama Satu Garut, mitra tepat untuk solusi dan inovasi.</p>
+        </div>
   </div>
 </section>
 
 <!-- Products Section -->
 <section class="py-5">
   <div class="container">
-    <h2 class="section-title text-center mb-5 fw-bold">Produk Unggulan</h2>
+    <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan kami</h2>
     <div class="row">
       
       <!-- Example Product 1 -->
