@@ -1,74 +1,53 @@
-@extends('layouts.admin.app')
+@extends('layouts.admin')
 
 @section('content')
-    <h1>Edit Konten Home</h1>
+<div class="container py-4">
+    <h2 class="mb-4">Edit Konten Home</h2>
 
-    @if (session('success'))
+    @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
     <form action="{{ route('admin.home.update') }}" method="POST">
         @csrf
-        @method('PUT')
 
-        <!-- Bagian 1 -->
-        <div class="card mb-4">
-            <h4>Inovatif</h4>
-            <div class="form-group mb-3">
-                <label>Icon</label>
-                <input type="text" name="homes[0][icon]" class="form-control" value="{{ $homes[0]->icon }}">
-            </div>
+        <!-- Konten 1 -->
+        <div class="mb-3">
+            <label for="icon1" class="form-label">Icon</label>
+            <input type="text" class="form-control" id="icon1" name="home[0][icon]" value="{{ $home[0]->icon }}" required>
 
-            <div class="form-group mb-3">
-                <label>Judul</label>
-                <input type="text" name="homes[0][title]" class="form-control" value="{{ $homes[0]->title }}">
-            </div>
+            <label for="title1" class="form-label mt-3">Judul</label>
+            <input type="text" class="form-control" id="title1" name="home[0][title]" value="{{ $home[0]->title }}" required>
 
-            <div class="form-group mb-3">
-                <label>Deskripsi</label>
-                <textarea name="homes[0][description]" class="form-control">{{ $homes[0]->description }}</textarea>
-            </div>
+            <label for="description1" class="form-label mt-3">Deskripsi</label>
+            <textarea class="form-control" id="description1" name="home[0][description]" rows="3" required>{{ $home[0]->description }}</textarea>
         </div>
 
-        <!-- Bagian 2 -->
-        <div class="card mb-4">
-            <h4>Kolaboratif</h4>
-            <div class="form-group mb-3">
-                <label>Icon</label>
-                <input type="text" name="homes[1][icon]" class="form-control" value="{{ $homes[1]->icon }}">
-            </div>
+        <!-- Konten 2 -->
+        <div class="mb-3">
+            <label for="icon2" class="form-label">Icon</label>
+            <input type="text" class="form-control" id="icon2" name="home[1][icon]" value="{{ $home[1]->icon }}" required>
 
-            <div class="form-group mb-3">
-                <label>Judul</label>
-                <input type="text" name="homes[1][title]" class="form-control" value="{{ $homes[1]->title }}">
-            </div>
+            <label for="title2" class="form-label mt-3">Judul</label>
+            <input type="text" class="form-control" id="title2" name="home[1][title]" value="{{ $home[1]->title }}" required>
 
-            <div class="form-group mb-3">
-                <label>Deskripsi</label>
-                <textarea name="homes[1][description]" class="form-control">{{ $homes[1]->description }}</textarea>
-            </div>
+            <label for="description2" class="form-label mt-3">Deskripsi</label>
+            <textarea class="form-control" id="description2" name="home[1][description]" rows="3" required>{{ $home[1]->description }}</textarea>
         </div>
 
-        <!-- Bagian 3 -->
-        <div class="card mb-4">
-            <h4>Global Mindset</h4>
-            <div class="form-group mb-3">
-                <label>Icon</label>
-                <input type="text" name="homes[2][icon]" class="form-control" value="{{ $homes[2]->icon }}">
-            </div>
+        <!-- Konten 3 -->
+        <div class="mb-3">
+            <label for="icon3" class="form-label">Icon</label>
+            <input type="text" class="form-control" id="icon3" name="home[2][icon]" value="{{ $home[2]->icon }}" required>
 
-            <div class="form-group mb-3">
-                <label>Judul</label>
-                <input type="text" name="homes[2][title]" class="form-control" value="{{ $homes[2]->title }}">
-            </div>
+            <label for="title3" class="form-label mt-3">Judul</label>
+            <input type="text" class="form-control" id="title3" name="home[2][title]" value="{{ $home[2]->title }}" required>
 
-            <div class="form-group mb-3">
-                <label>Deskripsi</label>
-                <textarea name="homes[2][description]" class="form-control">{{ $homes[2]->description }}</textarea>
-            </div>
+            <label for="description3" class="form-label mt-3">Deskripsi</label>
+            <textarea class="form-control" id="description3" name="home[2][description]" rows="3" required>{{ $home[2]->description }}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan Perubahan</button>
-        <a href="{{ url('/') }}" class="btn btn-secondary"><i class="fas fa-eye"></i> Lihat Website</a>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
     </form>
+</div>
 @endsection

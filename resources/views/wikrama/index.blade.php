@@ -86,31 +86,24 @@
         </div>
     </div>
 </a>
+@section('content')
+<div class="container py-4">
+    <h2 class="mb-4">Konten Home</h2>
 
-    <div class="row text-center g-4">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="p-4 border rounded-4 shadow-sm h-100">
-          <i class="bi{{ $home->icon }}display-4 text-success mb-3"></i>
-          <h5 class="fw-bold">{{ $home->title }}</h5>
-          <p class="text-muted">{{ $home->description }}</p>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="p-4 border rounded-4 shadow-sm h-100">
-          <i class="bi {{ $home->icon }}display-4 text-success mb-3"></i>
-          <h5 class="fw-bold">{{ $home->title }}</h5>
-          <p class="text-muted">{{ $home->description }}</p>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="p-4 border rounded-4 shadow-sm h-100">
-          <i class="bi{{ $home->icon }}display-4 text-success mb-3"></i>
-          <h5 class="fw-bold">{{ $home->title }}</h5>
-          <p class="text-muted">{{ $home->description }}</p>
-        </div>
-      </div>
+    <div class="row g-4">
+        @foreach($homes as $home)
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 + 100 }}">
+                <div class="p-4 border rounded-4 shadow-sm h-100">
+                    <i class="bi {{ $home->icon }} display-4 text-success mb-3"></i>
+                    <h5 class="fw-bold">{{ $home->title }}</h5>
+                    <p class="text-muted">{{ $home->description }}</p>
+                </div>
+            </div>
+        @endforeach
     </div>
-  </div>
+</div>
+@endsection
+
 </section>
 
 <!-- Services Section -->
