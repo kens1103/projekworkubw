@@ -90,23 +90,23 @@
     <div class="row text-center g-4">
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div class="p-4 border rounded-4 shadow-sm h-100">
-          <i class="bi bi-lightbulb-fill display-4 text-success mb-3"></i>
-          <h5 class="fw-bold">Inovatif</h5>
-          <p class="text-muted">Kami selalu membawa ide-ide segar untuk solusi digital Anda.</p>
+          <i class="bi{{ $home->icon }}display-4 text-success mb-3"></i>
+          <h5 class="fw-bold">{{ $home->title }}</h5>
+          <p class="text-muted">{{ $home->description }}</p>
         </div>
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="p-4 border rounded-4 shadow-sm h-100">
-          <i class="bi bi-people-fill display-4 text-success mb-3"></i>
-          <h5 class="fw-bold">Kolaboratif</h5>
-          <p class="text-muted">Kerjasama tim kami membantu mewujudkan visi Anda dengan maksimal.</p>
+          <i class="bi {{ $home->icon }}display-4 text-success mb-3"></i>
+          <h5 class="fw-bold">{{ $home->title }}</h5>
+          <p class="text-muted">{{ $home->description }}</p>
         </div>
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
         <div class="p-4 border rounded-4 shadow-sm h-100">
-          <i class="bi bi-globe2 display-4 text-success mb-3"></i>
-          <h5 class="fw-bold">Global Mindset</h5>
-          <p class="text-muted">Kami membangun produk digital yang siap bersaing secara global.</p>
+          <i class="bi{{ $home->icon }}display-4 text-success mb-3"></i>
+          <h5 class="fw-bold">{{ $home->title }}</h5>
+          <p class="text-muted">{{ $home->description }}</p>
         </div>
       </div>
     </div>
@@ -115,6 +115,7 @@
 
 <!-- Services Section -->
 <section class="py-5" id="services" data-aos="fade-up">
+<a href="{{ url('/produk') }}" style="text-decoration: none; color: inherit;">
   <div class="container">
     <h2 class="section-title text-center fw-bold mb-5">Produk & Layanan</h2>
     <div class="row text-center gy-4">
@@ -144,6 +145,7 @@
 
 <!-- Portfolio Section -->
 <section class="py-5 bg-light" id="portfolio">
+<a href="{{ url('/portofolio') }}" style="text-decoration: none; color: inherit;">
   <div class="container">
     <div class="section-title text-center mb-5">
       <h2 class="fw-bold">Portofolio</h2>

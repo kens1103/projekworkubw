@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Home extends Model
 {
-    use HasFactory;
-    protected $table = 'home'; // karena bukan jamak (homes)
-    protected $fillable = ['title', 'description', 'image'];
+    protected $table = 'homes'; // ← tambahkan ini!
+    protected $fillable = ['icon', 'title', 'description'];
 }

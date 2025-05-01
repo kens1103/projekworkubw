@@ -61,9 +61,10 @@ Route::get('/kontak', function () {
             return view('admin.dashboard');
         });
     
-        Route::get('/home/edit', [AdminHomeController::class, 'edit'])->name('admin.home.edit');
-        Route::post('/home/update', [AdminHomeController::class, 'update'])->name('admin.home.update');
+        Route::get('/admin/home/edit', [AdminHomeController::class, 'edit'])->name('admin.home.edit');
+        Route::post('/admin/home/update', [AdminHomeController::class, 'update'])->name('admin.home.update');
     });
+    Route::get('/index', [AboutController::class, 'showHome'])->name('home.show');
     Route::get('/tentang', [AboutController::class, 'showAbout'])->name('about.show');
     Route::get('/admin/about/edit', [AboutController::class, 'edit'])->name('admin.about.edit');
 Route::put('/admin/about/update', [AboutController::class, 'update'])->name('about.update');
