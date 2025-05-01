@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\AuthController;
@@ -58,4 +59,8 @@ Route::get('/kontak', function () {
         Route::get('/admin/dashboard', function () {
             return view('admin.dashboard');
         });
+    
+        Route::get('/home/edit', [AdminHomeController::class, 'edit'])->name('admin.home.edit');
+        Route::post('/home/update', [AdminHomeController::class, 'update'])->name('admin.home.update');
     });
+    

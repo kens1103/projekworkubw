@@ -73,18 +73,19 @@
 
 <!-- About Section -->
 <section id="tentang" class="py-5">
-    <div class="container">
-        <div class="row align-items-center mb-5">
-            <div class="col-lg-6 text-center" data-aos="fade-right">
-                <img src="/img/produklayanan.jpg" alt="Tentang Kami" class="img-fluid rounded-4">
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <h2 class="fw-bold mb-4">Tentang Kami</h2>
-                    <p class="lead text-muted">
-                    Wikrama Satu Garut bertujuan memberdayakan masyarakat melalui inovasi dan kolaborasi usaha lokal. Kami menyediakan berbagai layanan digital untuk membantu Anda berkembang secara online, dari pengembangan website hingga pemasaran digital.
-                    </p>
-            </div>
+<a href="{{ url('/tentang') }}" style="text-decoration: none; color: inherit;">
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6 text-center" data-aos="fade-right">
+            <img src="/img/produklayanan.jpg" alt="Tentang Kami" class="img-fluid rounded-4">
         </div>
+        <div class="col-lg-6" data-aos="fade-left">
+            <h2 class="fw-bold mb-4">Tentang Kami</h2>
+            <p class="lead text-muted">
+            Wikrama Satu Garut bertujuan memberdayakan masyarakat melalui inovasi dan kolaborasi usaha lokal. Kami menyediakan berbagai layanan digital untuk membantu Anda berkembang secara online, dari pengembangan website hingga pemasaran digital.
+            </p>
+        </div>
+    </div>
+</a>
 
     <div class="row text-center g-4">
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">

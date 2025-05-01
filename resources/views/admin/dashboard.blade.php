@@ -38,10 +38,18 @@
         <div class="col-md-2 sidebar">
             <h4 class="text-center mb-4">Admin Panel</h4>
             <a href="#">Dashboard</a>
-            <a href="#">Kelola User</a>
-            <a href="#">Kelola Gambar</a>
-            <a href="#">Kelola Komentar</a>
-            <a href="{{ url('/logout') }}" class="text-danger mt-5">Logout</a>
+            <a href="{{ route('admin.home.edit') }}">Home</a>
+            <a href="#">Tentang</a>
+            <a href="#">Produk & layanan</a>
+            <a href="#">Portofolio</a>
+            <a href="#">Kontak</a>
+            <form action="{{ route('logout') }}" method="POST" class="mt-5">
+    @csrf
+    <button type="submit" class="btn btn-link text-danger p-0" style="text-decoration: none;">
+        Logout
+    </button>
+</form>
+
         </div>
 
         <!-- Content -->
