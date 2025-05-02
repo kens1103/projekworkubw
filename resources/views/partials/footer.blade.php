@@ -41,7 +41,7 @@
       <div class="col-lg-3 col-md-6">
         <h4 class="text-dark">Follow Us</h4>
         <div class="d-flex mt-3">
-          <a href="#" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.facebook.com/smkwikrama1garut/" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
           <a href="https://www.instagram.com/smkwikrama1garut/" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i class="bi bi-instagram"></i></a>
           <a href="https://www.linkedin.com/company/smkwikrama1garut/" class="btn btn-outline-dark btn-sm rounded-circle"><i class="bi bi-linkedin"></i></a>
         </div>
