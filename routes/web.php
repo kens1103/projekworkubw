@@ -9,6 +9,7 @@ use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\KontakController as AdminKontakController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -22,12 +23,6 @@ use App\Http\Controllers\KontakController;
 |
 */
 
-Route::get('/', function () {
-    return view('wikrama.index');
-});
-Route::get('/tentang', function () {
-    return view('wikrama.tentang');
-});
 Route::get('/produk', function () {
     return view('wikrama.produk');
 });
@@ -41,6 +36,7 @@ Route::get('/kontak', function () {
 
     // Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/', [HomeController::class, 'showHome'])->name('home.index');
     
     // Content Management
     Route::get('/dashboard/content', [ContentController::class, 'index'])->name('admin.content.index');
