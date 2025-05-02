@@ -129,5 +129,18 @@
       });
     }
   </script>
+  @if(session('success'))
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+      successModal.show();
+
+      setTimeout(() => {
+        successModal.hide();
+      }, 3000);
+    });
+  </script>
+  @endif
+
 </body>
 </html>

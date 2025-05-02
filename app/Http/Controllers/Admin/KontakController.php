@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kontak;
+use App\Models\Pesan;
 
 class KontakController extends Controller
 {
@@ -44,6 +45,13 @@ class KontakController extends Controller
     {
         $pesans = \App\Models\Pesan::latest()->get();
         return view('admin.kontak.pesan', compact('pesans'));
+    }
+    public function destroy($id)
+    {
+        $pesan = Pesan::findOrFail($id);
+        $pesan->delete();
+
+        return redirect()->back()->with('success', 'Pesan berhasil dihapus.');
     }
 
 

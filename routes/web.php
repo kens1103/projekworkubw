@@ -58,7 +58,6 @@ Route::get('/kontak', function () {
     Route::get('/kontak', [KontakController::class, 'show'])->name('kontak.show');
     Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
     Route::post('/kontak/kirim', [KontakController::class, 'kirimPesan'])->name('kontak.kirim');
-    Route::get('/admin/kontak/pesan', [AdminKontakController::class, 'lihatPesan'])->name('admin.kontak.pesan');
     
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
@@ -74,6 +73,8 @@ Route::get('/kontak', function () {
 
         Route::get('/kontak/edit', [AdminKontakController::class, 'edit'])->name('admin.kontak.edit');
         Route::put('/kontak/update', [AdminKontakController::class, 'update'])->name('admin.kontak.update');
+        Route::delete('/admin/pesan/{id}', [AdminKontakController::class, 'destroy'])->name('pesan.destroy');
+        Route::get('/admin/kontak/pesan', [AdminKontakController::class, 'lihatPesan'])->name('admin.kontak.pesan');
 
     });
     Route::get('/index', [AboutController::class, 'showHome'])->name('home.show');

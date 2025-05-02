@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('pesans', function (Blueprint $table) {
             $table->id();
-            $table->string('telepon');
+            $table->string('name');
             $table->string('email');
-            $table->text('alamat');
+            $table->text('message');
             $table->timestamps();
         });        
     }
