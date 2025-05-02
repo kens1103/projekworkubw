@@ -1,4 +1,4 @@
-@extends('partials.sidebar')
+@extends('layouts.admin.app')
 <style>
         body {
             background-color: #f5f7fa;
