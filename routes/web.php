@@ -64,8 +64,9 @@ Route::get('/kontak', function () {
             return view('admin.dashboard');
         });
     
-        Route::get('/admin/home/edit', [AdminHomeController::class, 'edit'])->name('admin.home.edit');
-        Route::post('/admin/home/update', [AdminHomeController::class, 'update'])->name('admin.home.update');
+        Route::get('/admin/home/edit', [HomeController::class, 'edit'])->name('admin.home.edit');
+        Route::post('/admin/home/update', [HomeController::class, 'update'])->name('admin.home.update');
+        Route::put('/admin/home/update-single/{id}', [HomeController::class, 'updateSingle'])->name('admin.home.update.single');
 
         Route::get('/kontak/edit', [AdminKontakController::class, 'edit'])->name('admin.kontak.edit');
         Route::put('/kontak/update', [AdminKontakController::class, 'update'])->name('admin.kontak.update');

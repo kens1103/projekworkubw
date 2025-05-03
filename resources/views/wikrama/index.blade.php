@@ -64,7 +64,7 @@
     <div class="row align-items-center">
       <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
         <h1 class="display-4 fw-bold">UBW TeFa Wisaga</h1>
-        <p class="lead">Kami adalah tim desainer berbakat yang membuat website dengan Bootstrap.</p>
+        <p class="lead">Wadah kolaborasi, karya nyata siswa berbasis Teaching Factory.</p>
         <a href="{{ url('/tentang') }}" class="btn btn-outline-success rounded-pill btn-lg me-3">Tentang Kami</a>
       </div>
       <div class="col-md-6 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="300">
@@ -94,12 +94,13 @@
 <!-- Konten Home Section -->
 <section class="py-5" id="konten-home">
   <div class="container">
-    <h2 class="text-center mb-4 fw-bold">Konten Home</h2>
-    <div class="row g-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4"> <!-- 4 kolom per baris -->
       @foreach($homes as $home)
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 + 100 }}">
-          <div class="p-4 border rounded-4 shadow-sm h-100">
-            <i class="bi {{ $home->icon }} display-4 text-success mb-3"></i>
+        <div class="col" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 + 100 }}">
+          <div class="p-4 border rounded-4 shadow-sm h-100 text-center">
+            @if($home->image)
+              <img src="{{ asset('storage/' . $home->image) }}" class="mb-3 img-fluid rounded" style="height: 100px; object-fit: cover;">
+            @endif
             <h5 class="fw-bold">{{ $home->title }}</h5>
             <p class="text-muted">{{ $home->description }}</p>
           </div>
