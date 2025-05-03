@@ -41,8 +41,10 @@
               alt="{{ $produk->title }}"
               data-bs-toggle="modal"
               data-bs-target="#imageModal"
+              data-title="{{ $produk->title }}"
+              data-description="{{ $produk->description }}"
               data-image="{{ asset('storage/' . $produk->image) }}"
-            >
+          >
           </div>
           <div class="card-body">
             <h5 class="card-title fw-bold text-sm">{{ $produk->title }}</h5>
@@ -65,6 +67,8 @@
     <div class="modal-content bg-transparent border-0">
       <div class="modal-body text-center">
         <img src="" id="modalImage" class="img-fluid rounded" alt="Preview Produk">
+        <h3 class="mt-3" id="modalTitle"></h3>
+        <p id="modalDescription" class="mt-2 text-muted"></p>
       </div>
     </div>
   </div>
@@ -76,12 +80,19 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
     const imageModal = document.getElementById('imageModal');
 
     document.querySelectorAll('img[data-bs-toggle="modal"]').forEach(img => {
       img.addEventListener('click', function () {
         const src = this.getAttribute('data-image');
+        const title = this.getAttribute('data-title');
+        const description = this.getAttribute('data-description');
+        
         modalImage.setAttribute('src', src);
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
       });
     });
   });

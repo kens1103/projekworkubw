@@ -24,16 +24,18 @@ class ProdukController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048'
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'description' => 'required|string|max:1000',
         ]);
-
+    
         $path = $request->file('image')->store('produk', 'public');
-
+    
         Produk::create([
             'title' => $request->title,
-            'image' => $path
+            'image' => $path,
+            'description' => $request->description,
         ]);
-
+    
         return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan!');
     }
 
@@ -46,21 +48,23 @@ class ProdukController extends Controller
     public function update(Request $request, $id)
     {
         $produk = Produk::findOrFail($id);
-
+    
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'description' => 'nullable|string|max:1000',
         ]);
-
+    
         if ($request->hasFile('image')) {
             Storage::disk('public')->delete($produk->image);
             $path = $request->file('image')->store('produk', 'public');
             $produk->image = $path;
         }
-
+    
         $produk->title = $request->title;
+        $produk->description = $request->description;  // Menyimpan deskripsi
         $produk->save();
-
+    
         return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diupdate!');
     }
 

@@ -24,6 +24,14 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="description" class="form-label">Deskripsi Produk</label>
+            <textarea name="description" class="form-control" rows="4">{{ $produk->description }}</textarea>
+            @error('description')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
         <button type="submit" class="btn btn-success">Update</button>
         <a href="{{ route('admin.produk.index') }}" class="btn btn-secondary">Kembali</a>
     </form>
