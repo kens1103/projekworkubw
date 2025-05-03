@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
   <div class="container">
     <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ url('/') }}">
     <img src="{{ asset('img/logo.jpg') }}" alt="Logo Wisaga" height="40" class="me-2">

@@ -32,47 +32,175 @@
     <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan kami</h2>
     <div class="row">
       
-      <!-- Example Product 1 -->
-      <div class="col-md-4 mb-4">
+      <!-- Produk 1 -->
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100 shadow rounded-4">
-          <div class="overflow-hidden rounded-top-4" style="height: 250px;">
+          <div class="overflow-hidden rounded-top-4" style="height: 180px;">
               <img src="/img/molis.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 1">
           </div>
           <div class="card-body">
-            <h5 class="card-title fw-bold">Produk 1</h5>
-            <p class="card-text">Deskripsi singkat mengenai produk 1.</p>
+            <h5 class="card-title fw-bold">UNITED E Motor - TeFa PMN</h5>
           </div>
         </div>
       </div>
 
-      <!-- Example Product 2 -->
-      <div class="col-md-4 mb-4">
+      <!-- Produk 2 -->
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100 shadow rounded-4">
-          <div class="overflow-hidden rounded-top-4" style="height: 250px;">
-            <img src="/img/satpam.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 2">
+          <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+            <img src="/img/marketing.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 2">
           </div>
           <div class="card-body">
-            <h5 class="card-title fw-bold">Produk 2</h5>
-            <p class="card-text">Deskripsi singkat mengenai produk 2.</p>
+            <h5 class="card-title fw-bold">Jasa Digital Marketing - TeFa PMN</h5>
           </div>
         </div>
       </div>
 
-      <!-- Example Product 3 -->
-      <div class="col-md-4 mb-4">
+      <!-- Produk 3 -->
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100 shadow rounded-4">
-          <div class="overflow-hidden rounded-top-4" style="height: 250px;">
-            <img src="/img/ruangtjkt.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 3">
+          <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+            <img src="/img/wikramart.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 3">
           </div>
           <div class="card-body">
-            <h5 class="card-title fw-bold">Produk 3</h5>
-            <p class="card-text">Deskripsi singkat mengenai produk 3.</p>
+            <h5 class="card-title fw-bold">Wikramart - TeFa PMN</h5>
           </div>
         </div>
       </div>
+
+      <!-- Produk 4 -->
+<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/website.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Website Interaktif - TeFa PPLG</h5>
+    </div>
+  </div>
+</div>
+
+ <!-- Produk 4 -->
+ <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/uiux.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">UI/UX Design - TeFa PPLG</h5>
+    </div>
+  </div>
+</div>
+
+<!-- Produk 4 -->
+<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/informasi.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Sistem Informasi - TeFa PPLG</h5>
+    </div>
+  </div>
+</div>
+
+ <!-- Produk 4 -->
+ <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/instalasi.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Instalasi Jaringan Hotspot - TeFa TJKT</h5>
+    </div>
+  </div>
+</div>
+
+ <!-- Produk 4 -->
+ <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/internet.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Membangun Jaringan Internet - TeFa TJKT</h5>
+    </div>
+  </div>
+</div>
+
+ <!-- Produk 4 -->
+ <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/fiber.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Instalasi Fiber Optik - TeFa TJKT</h5>
+    </div>
+  </div>
+</div>
+
+ <!-- Produk 4 -->
+ <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/hotel.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Insitu Hotel - TeFa HTL</h5>
+    </div>
+  </div>
+</div>
+
+<!-- Produk 4 -->
+<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/hotel.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Insitu Hotel - TeFa HTL</h5>
+    </div>
+  </div>
+</div>
+
+<!-- Produk 4 -->
+<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/hotel.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Insitu Hotel - TeFa HTL</h5>
+    </div>
+  </div>
+</div>
+
+<!-- Produk 4 --> 
+<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/hotel.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Insitu Hotel - TeFa HTL</h5>
+    </div>
+  </div>
+</div>
+
+<!-- Produk 4 -->
+<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+  <div class="card h-100 shadow rounded-4">
+    <div class="overflow-hidden rounded-top-4" style="height: 180px;">
+      <img src="/img/hotel.jpg" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="Produk 4">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold text-sm">Insitu Hotel - TeFa HTL</h5>
+    </div>
+  </div>
+</div>
+
 
     </div>
   </div>
 </section>
-
-@endsection
