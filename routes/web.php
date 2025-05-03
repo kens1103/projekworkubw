@@ -10,6 +10,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\KontakController as AdminKontakController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\ProdukController;
+use App\Models\Produk;
 
 
 /*
@@ -24,7 +26,8 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/produk', function () {
-    return view('wikrama.produk');
+    $produks = \App\Models\Produk::all();
+    return view('wikrama.produk', compact('produks'));
 });
 Route::get('/portofolio', function () {
     return view('wikrama.portofolio');
@@ -74,9 +77,17 @@ Route::get('/kontak', function () {
         Route::get('/admin/kontak/pesan', [AdminKontakController::class, 'lihatPesan'])->name('admin.kontak.pesan');
 
         Route::get('/portofolio', [PortofolioController::class, 'index'])->name('admin.portofolio.index');
-    Route::post('/portofolio', [PortofolioController::class, 'store'])->name('admin.portofolio.store');
-    Route::delete('/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('admin.portofolio.destroy');
+        Route::post('/portofolio', [PortofolioController::class, 'store'])->name('admin.portofolio.store');
+        Route::delete('/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('admin.portofolio.destroy');
+
+        Route::get('/admin/produk', [ProdukController::class, 'index'])->name('admin.produk.index');
+        Route::get('/admin/produk/create', [ProdukController::class, 'create'])->name('admin.produk.create');
+        Route::post('/admin/produk', [ProdukController::class, 'store'])->name('admin.produk.store');
+        Route::get('/admin/produk/{id}/edit', [ProdukController::class, 'edit'])->name('admin.produk.edit');
+        Route::put('/admin/produk/{id}', [ProdukController::class, 'update'])->name('admin.produk.update');
+        Route::delete('/admin/produk/{id}', [ProdukController::class, 'destroy'])->name('admin.produk.destroy');
     });
+
     Route::get('/portofolio', [PortofolioController::class, 'showPortofolioPage'])->name('portofolio.page');
     Route::get('/index', [AboutController::class, 'showHome'])->name('home.show');
     Route::get('/tentang', [AboutController::class, 'showAbout'])->name('about.show');

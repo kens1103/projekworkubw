@@ -11,7 +11,9 @@
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a></li>
         <li class="nav-item"><a class="nav-link {{ Request::is('tentang') ? 'active' : '' }}" href="{{ url('/tentang') }}">Tentang</a></li>
-        <li class="nav-item"><a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ url('/produk') }}">Produk & Layanan</a></li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ url('/produk') }}">Produk & Layanan</a>
+        </li>
         <li class="nav-item"><a class="nav-link {{ Request::is('portofolio') ? 'active' : '' }}" href="{{ url('/portofolio') }}">Portofolio</a></li>
         <li class="nav-item"><a class="nav-link {{ Request::is('kontak') ? 'active' : '' }}" href="{{ url('/kontak') }}">Kontak</a></li>
       </ul>
