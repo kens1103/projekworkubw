@@ -1,18 +1,18 @@
-<!-- resources/views/wikrama/portofolio.blade.php -->
+
 @extends('layouts.app')
 
 <style>
-  /* Style portofolio */
+  
   .portfolio-wrap {
     overflow: hidden;
-    border-radius: 1rem; /* Semua sudut membulat */
+    border-radius: 1rem; 
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     position: relative;
     transition: transform 0.5s ease, filter 0.5s ease;
   }
   .portfolio-wrap img {
     width: 100%;
-    height: 220px; /* Ukuran fix semua portofolio */
+    height: 220px; 
     object-fit: cover;
     transition: transform 0.5s ease, filter 0.5s ease;
     border-radius: 1rem;
@@ -35,15 +35,19 @@
   .portfolio-wrap:hover .portfolio-info {
     opacity: 1;
   }
-  .portfolio-info h4, .portfolio-info p {
+  .portfolio-info h4 {
     color: #fff;
+    margin: 0;
+  }
+  .portfolio-info p {
+    color: #6c757d;
     margin: 0;
   }
   .portfolio-info a {
     text-decoration: none;
   }
   .glightbox {
-    color: #212529; /* Abu gelap - netral, elegan */
+    color: #212529; 
     transition: color 0.3s ease;
   }
   .glightbox h4 {
@@ -53,7 +57,7 @@
   }
   .glightbox p {
       font-size: 14px;
-      color: #212529; /* Abu abu muda */
+      color: #212529; 
   }
 </style>
 
@@ -81,60 +85,22 @@
       <h2 class="fw-bold">Portofolio</h2>
     </div>
 
-    <!-- Portfolio Gallery -->
-    <div class="row portfolio-container g-4">
-      
-      <!-- Portfolio Item 1 -->
-      <div class="col-lg-4 col-md-6 portfolio-item app" data-aos="fade-up">
-        <div class="portfolio-wrap">
-          <img src="/img/molis.jpg" alt="Aplikasi 1">
-          <div class="portfolio-info text-center">
-            <a href="/img/molis.jpg" class="glightbox" title="Aplikasi 1">
-              <h4>coba coba</h4>
-              <p>App</p>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio Item 2 -->
-      <div class="col-lg-4 col-md-6 portfolio-item web" data-aos="fade-up" data-aos-delay="100">
-        <div class="portfolio-wrap">
-          <img src="/img/ruangpmn.jpg" alt="Website 1">
-          <div class="portfolio-info text-center">
-            <a href="/img/ruangpmn.jpg" class="glightbox" title="Website 1">
-              <h4>Website 1</h4>
-              <p>Web</p>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio Item 3 -->
-      <div class="col-lg-4 col-md-6 portfolio-item design" data-aos="fade-up" data-aos-delay="200">
-        <div class="portfolio-wrap">
-          <img src="/img/ruangtjkt.jpg" alt="Desain 1">
-          <div class="portfolio-info text-center">
-            <a href="/img/ruangtjkt.jpg" class="glightbox" title="Desain 1">
-              <h4>Desain 1</h4>
-              <p>Design</p>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio Item 4 -->
-      <div class="col-lg-4 col-md-6 portfolio-item app" data-aos="fade-up" data-aos-delay="300">
-        <div class="portfolio-wrap">
-          <img src="/img/satpam.jpg" alt="Aplikasi 2">
-          <div class="portfolio-info text-center">
-            <a href="/img/satpam.jpg" class="glightbox" title="Aplikasi 2">
-              <h4>Aplikasi 2</h4>
-              <p>App</p>
-            </a>
-          </div>
-        </div>
-      </div>
+   <!-- Portfolio Gallery -->
+   <div class="row portfolio-container g-4">
+     @foreach($portofolios as $item)
+     <div class="col-lg-4 col-md-6 portfolio-item" data-aos="fade-up">
+       <div class="portfolio-wrap">
+         <img src="{{ asset($item->image) }}" alt="Portofolio">
+         <div class="portfolio-info text-center">
+           <a href="{{ asset($item->image) }}" class="glightbox" title="Portofolio">
+             <h4>{{ $item->title ?? 'Portofolio' }}</h4>
+             <p>{{ $item->category ?? 'Kategori' }}</p>
+           </a>
+         </div>
+       </div>
+     </div>
+     @endforeach
+   </div>
 
     </div>
   </div>
