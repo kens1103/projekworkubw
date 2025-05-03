@@ -20,28 +20,41 @@ class PortofolioController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar
-        ]);
+{
+    $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'category' => 'nullable|string|max:100', // ← Validasi category
+    ]);
 
-        $portofolio = new Portofolio;
-        $portofolio->image = $request->file('image')->store('portofolio_images', 'public');
-        $portofolio->save();
+    $image = $request->file('image');
+    $imageName = time() . '_' . $image->getClientOriginalName();
+    $image->move(public_path('portofolio_images'), $imageName);
 
-        return redirect()->route('admin.portofolio.index')->with('success', 'Foto portofolio berhasil ditambahkan.');
+    Portofolio::create([
+        'image' => 'portofolio_images/' . $imageName,
+        'category' => $request->category, // ← Simpan kategori ke DB
+    ]);
+
+    return redirect()->route('admin.portofolio.index')->with('success', 'Foto portofolio berhasil ditambahkan.');
+}
+
+
+public function destroy($id)
+{
+    $portofolio = Portofolio::findOrFail($id);
+    $imagePath = public_path($portofolio->image);
+
+    if (file_exists($imagePath)) {
+        unlink($imagePath);
     }
 
-    public function destroy($id)
-    {
-        $portofolio = Portofolio::findOrFail($id);
-        $imagePath = storage_path('app/public/' . $portofolio->image);
+    $portofolio->delete();
+    return redirect()->route('admin.portofolio.index')->with('success', 'Foto portofolio berhasil dihapus.');
+}
+public function showPortofolioPage()
+{
+    $portofolios = Portofolio::latest()->get();
+    return view('wikrama.portofolio', compact('portofolios'));
+}
 
-        if (file_exists($imagePath)) {
-            unlink($imagePath); // Hapus gambar
-        }
-
-        $portofolio->delete();
-        return redirect()->route('admin.portofolio.index')->with('success', 'Foto portofolio berhasil dihapus.');
-    }
 }

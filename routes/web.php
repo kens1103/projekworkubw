@@ -72,7 +72,11 @@ Route::get('/kontak', function () {
         Route::delete('/admin/pesan/{id}', [AdminKontakController::class, 'destroy'])->name('pesan.destroy');
         Route::get('/admin/kontak/pesan', [AdminKontakController::class, 'lihatPesan'])->name('admin.kontak.pesan');
 
+        Route::get('/portofolio', [PortofolioController::class, 'index'])->name('admin.portofolio.index');
+    Route::post('/portofolio', [PortofolioController::class, 'store'])->name('admin.portofolio.store');
+    Route::delete('/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('admin.portofolio.destroy');
     });
+    Route::get('/portofolio', [PortofolioController::class, 'showPortofolioPage'])->name('portofolio.page');
     Route::get('/index', [AboutController::class, 'showHome'])->name('home.show');
     Route::get('/tentang', [AboutController::class, 'showAbout'])->name('about.show');
     Route::get('/admin/about/edit', [AboutController::class, 'edit'])->name('admin.about.edit');
