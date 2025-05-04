@@ -28,7 +28,8 @@ use App\Models\Produk;
 Route::get('/produk', function () {
     $produks = \App\Models\Produk::all();
     return view('wikrama.produk', compact('produks'));
-});
+})->name('produk.index');
+
 Route::get('/portofolio', function () {
     return view('wikrama.portofolio');
 });

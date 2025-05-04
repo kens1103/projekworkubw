@@ -59,7 +59,7 @@
 @section('content')
 
 <!-- Hero Section -->
-<section class="hero" id="hero">
+<section class="hero" id="hero" style="padding-top: 100px;">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
@@ -110,35 +110,31 @@
   </div>
 </section>
 
-<!-- Services Section -->
-<section class="py-5" id="services" data-aos="fade-up">
-  <a href="{{ url('/produk') }}" style="text-decoration: none; color: inherit;">
-    <div class="container">
-      <h2 class="section-title text-center fw-bold mb-5">Produk & Layanan</h2>
-      <div class="row text-center gy-4">
-        <div class="col-md-3">
-          <i class="bi bi-display fs-1 mb-3 text-success"></i>
-          <h5>Desain UI/UX</h5>
-          <p class="text-muted">Mewujudkan tampilan dan pengalaman pengguna yang optimal dan profesional.</p>
+<!-- Produk & Layanan Section -->
+<section class="py-5 bg-light">
+  <div class="container" data-aos="fade-up">
+    <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan</h2>
+
+    <div class="row g-4">
+      @foreach($produks->take(3) as $produk)
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 shadow rounded-4 text-center">
+            <div class="overflow-hidden rounded-top-4" style="height: 200px;">
+              <img src="{{ asset('storage/' . $produk->image) }}" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="{{ $produk->title }}">
+            </div>
+            <div class="card-body d-flex flex-column align-items-center">
+              <h5 class="card-title fw-bold text-sm mb-2">{{ $produk->title }}</h5>
+              <p class="card-text text-muted mb-0">{{ Str::limit($produk->description, 120) }}</p>
+            </div>
+          </div>
         </div>
-        <div class="col-md-3">
-          <i class="bi bi-router-fill fs-1 mb-3 text-success"></i>
-          <h5>Setup Server dan Router</h5>
-          <p class="text-muted">Mendukung kebutuhan jaringan melalui instalasi dan konfigurasi perangkat yang andal.</p>
-        </div>
-        <div class="col-md-3">
-          <i class="bi bi-journal-text fs-1 mb-3 text-success"></i>
-          <h5>Administrasi dan Pengarsipan</h5>
-          <p class="text-muted">Menata dokumen dan arsip secara sistematis untuk menunjang efektivitas kerja.</p>
-        </div>
-        <div class="col-md-3">
-          <i class="bi bi-door-closed-fill fs-1 mb-3 text-success"></i>
-          <h5>Housekeeping</h5>
-          <p class="text-muted">Menciptakan ruang yang bersih dan nyaman melalui layanan tata graha yang terstandar.</p>
-        </div>
-      </div>
+      @endforeach
     </div>
-  </a>
+
+    <div class="text-center mt-4">
+      <a href="{{ route('produk.index') }}" class="btn btn-dark px-4 py-2">Lihat Semua Produk</a>
+    </div>
+  </div>
 </section>
 
 <!-- Portfolio Section -->
@@ -150,24 +146,13 @@
         <p class="text-muted">Beberapa hasil karya terbaik kami.</p>
       </div>
       <div class="row g-4">
-        <div class="col-lg-4 col-md-6" data-aos="fade-up">
-          <div class="portfolio-wrap"><img src="/img/molis.jpg" alt="Project 1"></div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="portfolio-wrap"><img src="/img/ruangpmn.jpg" alt="Project 2"></div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <div class="portfolio-wrap"><img src="/img/ruangtjkt.jpg" alt="Project 3"></div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-          <div class="portfolio-wrap"><img src="/img/satpam.jpg" alt="Project 4"></div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-          <div class="portfolio-wrap"><img src="/img/contoh5.jpg" alt="Project 5"></div>
-        </div>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-          <div class="portfolio-wrap"><img src="/img/contoh6.jpg" alt="Project 6"></div>
-        </div>
+        @foreach($portofolios->take(6) as $item)
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+            <div class="portfolio-wrap">
+              <img src="{{ asset($item->image) }}" alt="Portofolio">
+            </div>
+          </div>
+        @endforeach
       </div>
 
       <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="600">

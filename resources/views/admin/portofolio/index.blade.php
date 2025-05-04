@@ -1,33 +1,61 @@
 @extends('layouts.admin.app')
 
-@section('content')
-<div class="container mt-4">
-    <h2>Daftar Portofolio</h2>
+@push('styles')
+<style>
+    table img {
+        object-fit: cover;
+        height: 60px; /* Ukuran tinggi gambar yang sama dengan produk */
+        width: 80px; /* Ukuran lebar gambar yang sama dengan produk */
+        border-radius: 8px; /* Agar gambar lebih rapi */
+    }
+    .table td, .table th {
+        vertical-align: middle;
+    }
+</style>
+@endpush
 
-    <!-- Tombol untuk memicu modal -->
-    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">Tambah Foto</button>
+@section('content')
+<div class="container py-4">
+    <h2 class="mb-4 fw-bold">Manajemen Portofolio</h2>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <div class="row">
-        @foreach($portofolios as $item)
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{{ asset($item->image) }}" class="card-img-top" alt="Portofolio">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-muted">{{ $item->category ?? 'Karya' }}</p>
+    <!-- Tombol Tambah Foto -->
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">
+        Tambah Foto
+    </button>
+
+    <!-- Tabel Portofolio -->
+    <table class="table align-middle table-striped table-hover shadow-sm border rounded-4">
+        <thead class="table-light text-center">
+            <tr>
+                <th scope="col">No</th> <!-- Kolom nomor -->
+                <th scope="col">Foto</th>
+                <th scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($portofolios as $index => $item)
+                <tr>
+                    <td class="text-center">{{ $index + 1 }}</td> <!-- Menambahkan nomor urut -->
+                    <td class="text-center">
+                        <img src="{{ asset($item->image) }}" alt="Portofolio" width="80" class="rounded shadow-sm border">
+                    </td>
+                    <td class="text-center">
                         <form action="{{ route('admin.portofolio.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-sm">Hapus</button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i> Hapus
+                            </button>
                         </form>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 
 <!-- Modal Tambah Foto -->
@@ -44,10 +72,6 @@
               <div class="mb-3">
                   <label for="image" class="form-label">Foto</label>
                   <input class="form-control" type="file" name="image" id="image" required>
-              </div>
-              <div class="mb-3">
-                  <label for="category" class="form-label">Kategori</label>
-                  <input class="form-control" type="text" name="category" id="category" placeholder="Contoh: Web, Desain, App, dll">
               </div>
           </div>
           <div class="modal-footer">

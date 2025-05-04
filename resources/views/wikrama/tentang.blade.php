@@ -41,7 +41,7 @@
 <!-- Our Mission and Vision Section -->
 <section class="py-5">
   <div class="container">
-    <div class="row g-4 align-items-stretch">
+    <div class="row g-4 align-items-stretch"  data-aos="fade-up">
     <h1 class="display-5 text-center mb-5 fw-bold">Visi & Misi</h1>
       
         <!-- Misi -->

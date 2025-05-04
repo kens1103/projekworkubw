@@ -53,16 +53,26 @@
         .card {
             border-radius: 12px;
         }
+        .sidebar {
+            height: 100vh;
+            background: #343a40;
+            color: white;
+            padding-top: 20px;
+            width: 100%;
+            max-width: 220px;
+            min-height: 100vh;
+        }
     </style>
 </head>
 <body>
-    <div class="d-flex">
-        {{-- Sidebar --}}
-        @include('partials.sidebar')
-
-        {{-- Main Content --}}
-        <div class="col-md-10 content-wrapper">
-            @yield('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 p-0">
+                @include('partials.sidebar')
+            </div>
+            <div class="col-md-10 content-wrapper">
+                @yield('content')
+            </div>
         </div>
     </div>
 

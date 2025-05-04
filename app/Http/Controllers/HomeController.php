@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Home;
+use App\Models\Portofolio;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,9 +36,11 @@ class HomeController extends Controller
     
     public function showHome()
     {
-        // Menampilkan semua data home di halaman depan
         $homes = Home::all();
-        return view('wikrama.index', compact('homes'));
+        $portofolios = Portofolio::latest()->get();
+        $produks = Produk::latest()->get();
+    
+        return view('wikrama.index', compact('homes', 'portofolios', 'produks'));
     }
     public function updateSingle(Request $request, $id)
     {

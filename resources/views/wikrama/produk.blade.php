@@ -5,9 +5,22 @@
     transition: transform 0.5s ease, filter 0.5s ease;
     cursor: pointer;
   }
+
   .img-hover-zoom-dark:hover {
     transform: scale(1.05);
     filter: brightness(85%);
+  }
+
+  .card-body {
+    min-height: 250px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
   }
 </style>
 
@@ -25,76 +38,72 @@
   </div>
 </section>
 
-<!-- Products Section -->
+<!-- Produk Section -->
 <section class="py-5">
-  <div class="container">
+  <div class="container" data-aos="fade-up">
     <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan kami</h2>
-    <div class="row">
 
-      @forelse($produks as $produk)
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card h-100 shadow rounded-4">
-          <div class="overflow-hidden rounded-top-4" style="height: 180px;">
-            <img
-              src="{{ asset('storage/' . $produk->image) }}"
-              class="w-100 h-100 object-fit-cover img-hover-zoom-dark"
-              alt="{{ $produk->title }}"
-              data-bs-toggle="modal"
-              data-bs-target="#imageModal"
-              data-title="{{ $produk->title }}"
-              data-description="{{ $produk->description }}"
-              data-image="{{ asset('storage/' . $produk->image) }}"
-          >
-          </div>
-          <div class="card-body">
-            <h5 class="card-title fw-bold text-sm">{{ $produk->title }}</h5>
+    <div class="row g-4" id="produkContainer">
+      @foreach($produks->take(6) as $produk)
+        <div class="col-lg-4 col-md-6 produk-item" data-aos="fade-up">
+          <div class="card h-100 shadow rounded-4 text-center">
+            <div class="overflow-hidden rounded-top-4" style="height: 200px;">
+              <img src="{{ asset('storage/' . $produk->image) }}"
+                class="w-100 h-100 object-fit-cover img-hover-zoom-dark"
+                alt="{{ $produk->title }}">
+            </div>
+            <div class="card-body d-flex flex-column align-items-center">
+              <h5 class="card-title fw-bold text-sm mb-2">{{ $produk->title }}</h5>
+              <p class="card-text text-muted mb-0">{{ Str::limit($produk->description, 120) }}</p>
+            </div>
           </div>
         </div>
-      </div>
-      @empty
-      <div class="col-12 text-center">
-        <p class="text-muted">Belum ada produk yang tersedia.</p>
-      </div>
-      @endforelse
-
+      @endforeach
     </div>
+
+    @if($produks->count() > 6)
+      <div class="text-center mt-4">
+        <button id="loadMoreBtn" class="btn btn-dark px-4 py-2">Lihat Lebih Lanjut</button>
+      </div>
+    @endif
   </div>
 </section>
 
-<!-- Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content bg-transparent border-0">
-      <div class="modal-body text-center">
-        <img src="" id="modalImage" class="img-fluid rounded" alt="Preview Produk">
-        <h3 class="mt-3" id="modalTitle"></h3>
-        <p id="modalDescription" class="mt-2 text-muted"></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-@endsection
-
-@push('scripts')
+<!-- JS Load More -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const modalImage = document.getElementById('modalImage');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDescription = document.getElementById('modalDescription');
-    const imageModal = document.getElementById('imageModal');
+  let currentCount = 6;
+  const allProduks = @json($produks);
+  const container = document.getElementById('produkContainer');
+  const loadBtn = document.getElementById('loadMoreBtn');
 
-    document.querySelectorAll('img[data-bs-toggle="modal"]').forEach(img => {
-      img.addEventListener('click', function () {
-        const src = this.getAttribute('data-image');
-        const title = this.getAttribute('data-title');
-        const description = this.getAttribute('data-description');
-        
-        modalImage.setAttribute('src', src);
-        modalTitle.textContent = title;
-        modalDescription.textContent = description;
-      });
+  loadBtn?.addEventListener('click', () => {
+    const nextItems = allProduks.slice(currentCount, currentCount + 3);
+
+    nextItems.forEach(produk => {
+      const col = document.createElement('div');
+      col.className = 'col-lg-4 col-md-6 produk-item';
+      col.setAttribute('data-aos', 'fade-up');
+
+      col.innerHTML = `
+        <div class="card h-100 shadow rounded-4 text-center">
+          <div class="overflow-hidden rounded-top-4" style="height: 200px;">
+            <img src="/storage/${produk.image}" class="w-100 h-100 object-fit-cover img-hover-zoom-dark" alt="${produk.title}">
+          </div>
+          <div class="card-body d-flex flex-column align-items-center">
+            <h5 class="card-title fw-bold text-sm mb-2">${produk.title}</h5>
+            <p class="card-text text-muted mb-0">${produk.description.slice(0, 120)}${produk.description.length > 120 ? '...' : ''}</p>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(col);
     });
+
+    currentCount += 3;
+    if (currentCount >= allProduks.length) {
+      loadBtn.style.display = 'none';
+    }
   });
 </script>
-@endpush
+
+@endsection
