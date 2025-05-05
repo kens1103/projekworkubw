@@ -35,7 +35,7 @@
                     <td>{{ $pesan->name }}</td>
                     <td>{{ $pesan->email }}</td>
                     <td>{{ $pesan->message }}</td>
-                    <td>{{ $pesan->created_at->format('d M Y, H:i') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($pesan->created_at)->translatedFormat('d F Y, H:i') }}</td>
                     <td>
                         <form action="{{ route('pesan.destroy', $pesan->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus pesan ini?')">
                             @csrf

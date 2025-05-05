@@ -111,7 +111,7 @@
 </section>
 
 <!-- Produk & Layanan Section -->
-<section class="py-5 bg-light">
+<section class="py-5">
   <div class="container" data-aos="fade-up">
     <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan</h2>
 
@@ -131,17 +131,17 @@
       @endforeach
     </div>
 
-    <div class="text-center mt-4">
-      <a href="{{ route('produk.index') }}" class="btn btn-dark px-4 py-2">Lihat Semua Produk</a>
+    <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="600">
+      <a href="{{ route('produk.index') }}" class="btn btn-outline-dark rounded-pill px-4 py-2">Lihat Lebih Lanjut</a>
     </div>
   </div>
 </section>
 
 <!-- Portfolio Section -->
-<section class="py-5 bg-light" id="portfolio">
+<section class="py-5" id="portfolio">
   <a href="{{ url('/portofolio') }}" style="text-decoration: none; color: inherit;">
     <div class="container">
-      <div class="section-title text-center mb-5">
+      <div class="section-title text-center mb-5 fade-up">
         <h2 class="fw-bold">Portofolio</h2>
         <p class="text-muted">Beberapa hasil karya terbaik kami.</p>
       </div>
@@ -156,7 +156,7 @@
       </div>
 
       <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="600">
-        <a href="{{ url('/portofolio') }}" class="btn btn-outline-dark rounded-pill px-4 py-2">Lihat Semua</a>
+        <a href="{{ url('/portofolio') }}" class="btn btn-outline-dark rounded-pill px-4 py-2">Lihat Lebih Lanjut</a>
       </div>
     </div>
   </a>

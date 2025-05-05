@@ -4,9 +4,9 @@
 <style>
     table img {
         object-fit: cover;
-        height: 60px; /* Ukuran tinggi gambar yang sama dengan produk */
-        width: 80px; /* Ukuran lebar gambar yang sama dengan produk */
-        border-radius: 8px; /* Agar gambar lebih rapi */
+        height: 60px;
+        width: 80px;
+        border-radius: 8px;
     }
     .table td, .table th {
         vertical-align: middle;
@@ -27,11 +27,12 @@
         Tambah Foto
     </button>
 
-    <!-- Tabel Portofolio -->
-    <table class="table align-middle table-striped table-hover shadow-sm border rounded-4">
+<!-- Scrollable Table -->
+<div class="table-responsive shadow-sm rounded-4 border" style="max-height: 500px; overflow-y: auto;">
+    <table class="table align-middle table-striped table-hover mb-0">
         <thead class="table-light text-center">
             <tr>
-                <th scope="col">No</th> <!-- Kolom nomor -->
+                <th scope="col">No</th>
                 <th scope="col">Foto</th>
                 <th scope="col">Aksi</th>
             </tr>
@@ -39,9 +40,9 @@
         <tbody>
             @foreach($portofolios as $index => $item)
                 <tr>
-                    <td class="text-center">{{ $index + 1 }}</td> <!-- Menambahkan nomor urut -->
+                    <td class="text-center">{{ $index + 1 }}</td>
                     <td class="text-center">
-                        <img src="{{ asset($item->image) }}" alt="Portofolio" width="80" class="rounded shadow-sm border">
+                        <img src="{{ asset($item->image) }}" alt="Portofolio" class="rounded shadow-sm border" width="80">
                     </td>
                     <td class="text-center">
                         <form action="{{ route('admin.portofolio.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">

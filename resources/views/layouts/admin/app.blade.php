@@ -19,61 +19,63 @@
 
     <style>
         body {
+            margin: 0;
             background-color: #f5f7fa;
-            overflow-x: hidden;
         }
+
         .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
             height: 100vh;
             background: #343a40;
             color: white;
-            padding-top: 20px;
+            overflow-y: auto;
+            z-index: 1000;
         }
+
         .sidebar a {
             color: white;
             text-decoration: none;
             display: block;
             padding: 10px 20px;
         }
+
         .sidebar a:hover {
             background: #495057;
         }
+
         .dropdown-menu {
             background-color: #343a40;
         }
+
         .dropdown-menu .dropdown-item {
             color: white;
         }
+
         .dropdown-menu .dropdown-item:hover {
             background-color: #495057;
         }
+
         .content-wrapper {
-            flex-grow: 1;
+            margin-left: 220px;
             padding: 30px;
+            height: 100vh;
+            overflow-y: auto;
         }
+
         .card {
             border-radius: 12px;
-        }
-        .sidebar {
-            height: 100vh;
-            background: #343a40;
-            color: white;
-            padding-top: 20px;
-            width: 100%;
-            max-width: 220px;
-            min-height: 100vh;
         }
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2 col-lg-2 p-0">
-                @include('partials.sidebar')
-            </div>
-            <div class="col-md-10 content-wrapper">
-                @yield('content')
-            </div>
-        </div>
+    <div class="sidebar">
+        @include('partials.sidebar')
+    </div>
+    <div class="content-wrapper">
+        @yield('content')
     </div>
 
     <!-- JS Scripts -->
