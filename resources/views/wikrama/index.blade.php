@@ -84,7 +84,9 @@
       <div class="col-lg-6" data-aos="fade-left">
         <h2 class="fw-bold mb-4">Tentang Kami</h2>
         <p class="lead text-muted">
-          Wikrama Satu Garut bertujuan memberdayakan masyarakat melalui inovasi dan kolaborasi usaha lokal. Kami menyediakan berbagai layanan digital untuk membantu Anda berkembang secara online, dari pengembangan website hingga pemasaran digital.
+          Wikrama 1 Garut bertujuan memberdayakan masyarakat melalui inovasi dan kolaborasi usaha lokal. 
+          Kami menyediakan berbagai layanan digital untuk membantu Anda berkembang secara online, 
+          dari pengembangan website hingga pemasaran digital.
         </p>
       </div>
     </div>
@@ -116,7 +118,7 @@
     <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan</h2>
 
     <div class="row g-4">
-      @foreach($produks->take(3) as $produk)
+      @foreach($produks->take(4) as $produk)
         <div class="col-lg-4 col-md-6">
           <div class="card h-100 shadow rounded-4 text-center">
             <div class="overflow-hidden rounded-top-4" style="height: 200px;">
@@ -131,7 +133,7 @@
       @endforeach
     </div>
 
-    <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="600">
+    <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="500">
       <a href="{{ route('produk.index') }}" class="btn btn-outline-dark rounded-pill px-4 py-2">Lihat Lebih Lanjut</a>
     </div>
   </div>
@@ -141,9 +143,9 @@
 <section class="py-5" id="portfolio">
   <a href="{{ url('/portofolio') }}" style="text-decoration: none; color: inherit;">
     <div class="container">
-      <div class="section-title text-center mb-5 fade-up">
+      <div class="section-title text-center mb-5" data-aos="fade-up">
         <h2 class="fw-bold">Portofolio</h2>
-        <p class="text-muted">Beberapa hasil karya terbaik kami.</p>
+        <p class="text-muted">Hasil karya terbaik UBW TeFa Wikrama 1 Garut.</p>
       </div>
       <div class="row g-4">
         @foreach($portofolios->take(6) as $item)
@@ -155,7 +157,7 @@
         @endforeach
       </div>
 
-      <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="600">
+      <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="500">
         <a href="{{ url('/portofolio') }}" class="btn btn-outline-dark rounded-pill px-4 py-2">Lihat Lebih Lanjut</a>
       </div>
     </div>

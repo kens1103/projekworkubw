@@ -35,9 +35,6 @@
 
 @section('content')
 <h1>Edit Tentang Kami</h1>
-<a href="{{ url('tentang') }}" class="btn btn-success mb-3">
-    <i class="fa-solid fa-eye"></i> Lihat di Tentang
-</a>
 
 @if (session('success'))
     <div class="alert alert-success">

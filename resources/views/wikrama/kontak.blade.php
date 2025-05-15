@@ -9,7 +9,7 @@
     <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
     <div class="position-absolute top-50 start-50 translate-middle text-white text-center" data-aos="fade-up">
       <h1 class="display-5 fw-bold">Kontak Kami</h1>
-      <p class="fs-6 mt-3">Hubungi UBW TEFA Wikrama Satu Garut untuk informasi, konsultasi, atau kerja sama.</p>
+      <p class="fs-6 mt-3">Hubungi UBW TeFa Wikrama 1 Garut untuk Informasi, Konsultasi, atau Kerjasama.</p>
     </div>
   </div>
 </section>

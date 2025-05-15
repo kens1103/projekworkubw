@@ -55,7 +55,7 @@
     <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
     <div class="position-absolute top-50 start-50 translate-middle text-white text-center" data-aos="fade-up">
       <h1 class="display-5 fw-bold">Portofolio</h1>
-      <p class="fs-6 mt-3">Menampilkan hasil karya terbaik dari UBW TEFA Wikrama Satu Garut.</p>
+      <p class="fs-6 mt-3">Menampilkan hasil karya terbaik dari UBW TeFa Wikrama 1 Garut.</p>
     </div>
   </div>
 </section>
@@ -79,8 +79,8 @@
     </div>
 
     @if($portofolios->count() > 8)
-    <div class="text-center mt-4">
-      <button class="btn btn-dark px-4 py-2" id="loadMoreBtn">Lihat Lebih Banyak</button>
+    <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="600">
+      <button class="btn btn-outline-dark rounded-pill px-4 py-2" id="loadMoreBtn">Lihat Lebih Banyak</button>
     </div>
     @endif
   </div>

@@ -33,7 +33,7 @@
     <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
     <div class="position-absolute top-50 start-50 translate-middle text-white text-center" data-aos="fade-up">
       <h1 class="display-5 fw-bold">Produk & Layanan Kami</h1>
-      <p class="fs-6 mt-3">UBW TEFA Wikrama Satu Garut, mitra tepat untuk solusi dan inovasi.</p>
+      <p class="fs-6 mt-3">UBW TEFA Wikrama 1 Garut, mitra tepat untuk solusi dan inovasi.</p>
     </div>
   </div>
 </section>
@@ -62,8 +62,8 @@
     </div>
 
     @if($produks->count() > 6)
-      <div class="text-center mt-4">
-        <button id="loadMoreBtn" class="btn btn-dark px-4 py-2">Lihat Lebih Lanjut</button>
+      <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="500">
+        <button id="loadMoreBtn" class="btn btn-outline-dark rounded-pill px-4 py-2">Lihat Lebih Lanjut</button>
       </div>
     @endif
   </div>
