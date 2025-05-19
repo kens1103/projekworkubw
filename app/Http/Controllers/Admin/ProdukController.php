@@ -14,12 +14,10 @@ class ProdukController extends Controller
         $produks = Produk::all();
         return view('admin.produk.index', compact('produks'));
     }
-
     public function create()
     {
         return view('admin.produk.create');
     }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -38,13 +36,11 @@ class ProdukController extends Controller
     
         return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan!');
     }
-
     public function edit($id)
     {
         $produk = Produk::findOrFail($id);
         return view('admin.produk.edit', compact('produk'));
     }
-
     public function update(Request $request, $id)
     {
         $produk = Produk::findOrFail($id);
@@ -62,12 +58,11 @@ class ProdukController extends Controller
         }
     
         $produk->title = $request->title;
-        $produk->description = $request->description;  // Menyimpan deskripsi
+        $produk->description = $request->description;
         $produk->save();
     
         return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diupdate!');
     }
-
     public function destroy($id)
     {
         $produk = Produk::findOrFail($id);

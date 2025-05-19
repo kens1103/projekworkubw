@@ -10,9 +10,7 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-        // Ambil semua konten untuk Inovatif, Kolaboratif, dan Global Mindset
         $contents = Content::all();
-        // Ambil semua portofolio
         $portofolios = Portofolio::all();
 
         return view('admin.dashboard', compact('contents', 'portofolios'));

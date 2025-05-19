@@ -5,20 +5,16 @@
     transition: transform 0.5s ease, filter 0.5s ease;
     cursor: pointer;
   }
-
   .img-hover-zoom-dark:hover {
     transform: scale(1.05);
     filter: brightness(85%);
   }
-
   .card-body {
     min-height: 250px;
   }
-
   .card-title {
     font-size: 1.1rem;
   }
-
   .card-text {
     font-size: 0.9rem;
   }
@@ -26,7 +22,7 @@
 
 @section('content')
 
-<!-- Hero Section -->
+<!-- HERO SECTION -->
 <section class="bg-light" id="about">
   <div class="position-relative w-100 overflow-hidden" style="height: 450px;">
     <img src="/img/header.jpg" class="w-100 h-100 object-fit-cover" alt="About Image">
@@ -38,7 +34,7 @@
   </div>
 </section>
 
-<!-- Produk Section -->
+<!-- PRODUK & LAYANAN -->
 <section class="py-5">
   <div class="container" data-aos="fade-up">
     <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan kami</h2>
@@ -69,7 +65,6 @@
   </div>
 </section>
 
-<!-- JS Load More -->
 <script>
   let currentCount = 6;
   const allProduks = @json($produks);

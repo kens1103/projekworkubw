@@ -37,7 +37,6 @@
                                 </div>
                             @endif
                             <input type="file" name="image" class="form-control">
-
                             <button type="submit" class="btn btn-primary mt-3">Simpan Perubahan</button>
                         </form>
                     </div>

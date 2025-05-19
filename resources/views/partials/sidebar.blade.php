@@ -1,4 +1,4 @@
-<!-- Sidebar -->
+<!-- SIDEBAR -->
 <nav class="d-flex flex-column vh-100 sidebar" id="sidebar" style="background: #343a40;">
     <div class="p-3 border-bottom d-flex justify-content-between align-items-center text-white">
         <h4 class="fw-bold mb-0">Panel Admin</h4>
@@ -15,7 +15,7 @@
             <li><a href="{{ route('admin.produk.index') }}" class="nav-link text-white">Produk & Layanan</a></li>
             <li><a href="{{ route('admin.portofolio.index') }}" class="nav-link text-white">Portofolio</a></li>
 
-            <!-- Dropdown Kontak -->
+            <!-- DROPDOWN KONTAK -->
             <li class="nav-item dropdown px-3">
                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Kontak
@@ -26,7 +26,7 @@
                 </ul>
             </li>
 
-            <!-- Logout -->
+            <!-- LOGOUT -->
             <li class="mt-4 px-3">
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf

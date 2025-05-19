@@ -97,21 +97,18 @@
   <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
 
   <script>
-    // Inisialisasi AOS (Animate On Scroll)
     document.addEventListener('DOMContentLoaded', function() {
       AOS.init({
-        duration: 1200, // Durasi animasi dalam milidetik
-        easing: 'ease-in-out', // Jenis easing
-        once: true // Animasi hanya dijalankan sekali saat elemen muncul
+        duration: 1200,
+        easing: 'ease-in-out',
+        once: true
       });
     });
 
-    // GLightbox
     const lightbox = GLightbox({
       selector: '.glightbox'
     });
 
-    // Isotope filter
     const portfolioContainer = document.querySelector('.portfolio-container');
     if (portfolioContainer) {
       const iso = new Isotope(portfolioContainer, {

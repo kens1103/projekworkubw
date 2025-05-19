@@ -14,7 +14,6 @@ class HomeController extends Controller
         $home = Home::all();
         return view('admin.home.edit', compact('home'));        
     }
-
     public function update(Request $request)
     {
         foreach ($request->home as $item) {
@@ -33,7 +32,6 @@ class HomeController extends Controller
     
         return back()->with('success', 'Konten berhasil diperbarui!');
     }    
-    
     public function showHome()
     {
         $homes = Home::all();

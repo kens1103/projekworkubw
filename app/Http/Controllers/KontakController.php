@@ -21,7 +21,6 @@ class KontakController extends Controller
 
         return view('wikrama.kontak', compact('kontak'));
     }
-
     public function kirimPesan(Request $request)
     {
         \App\Models\Pesan::create($request->only(['name', 'email', 'message']));

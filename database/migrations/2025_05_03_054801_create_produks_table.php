@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('gambar'); // simpan nama file
-            $table->string('kategori'); // contoh: TeFa PMN, PPLG, TJKT, HTL
+            $table->string('gambar');
+            $table->string('kategori');
             $table->timestamps();
         });
     }    
@@ -23,7 +23,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('produks');
     }

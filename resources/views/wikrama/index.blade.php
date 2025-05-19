@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 <style>
-  /* Style portofolio */
   .portfolio-wrap {
     overflow: hidden;
     border-radius: 1rem;
@@ -58,7 +57,7 @@
 
 @section('content')
 
-<!-- Hero Section -->
+<!-- HERO SECTION -->
 <section class="hero" id="hero" style="padding-top: 100px;">
   <div class="container">
     <div class="row align-items-center">
@@ -74,7 +73,7 @@
   </div>
 </section>
 
-<!-- Tentang Section -->
+<!-- TENTANG SECTION -->
 <section id="tentang" class="py-5">
   <a href="{{ url('/tentang') }}" style="text-decoration: none; color: inherit;">
     <div class="row align-items-center mb-5">
@@ -93,10 +92,10 @@
   </a>
 </section>
 
-<!-- Konten Home Section -->
+<!-- KONTEN JURUSAN -->
 <section class="py-5" id="konten-home">
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-4 g-4"> <!-- 4 kolom per baris -->
+    <div class="row row-cols-1 row-cols-md-4 g-4">
       @foreach($homes as $home)
         <div class="col" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 + 100 }}">
           <div class="p-4 border rounded-4 shadow-sm h-100 text-center">
@@ -112,7 +111,7 @@
   </div>
 </section>
 
-<!-- Produk & Layanan Section -->
+<!-- PRODUK & LAYANAN SECTION -->
 <section class="py-5">
   <div class="container" data-aos="fade-up">
     <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan</h2>
@@ -139,7 +138,7 @@
   </div>
 </section>
 
-<!-- Portfolio Section -->
+<!-- PORTOFOLIO SECTION -->
 <section class="py-5" id="portfolio">
   <a href="{{ url('/portofolio') }}" style="text-decoration: none; color: inherit;">
     <div class="container">

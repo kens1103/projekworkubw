@@ -1,6 +1,6 @@
 <style>
   .btn-outline-dark:hover {
-    background-color: #0d6efd; /* biru Bootstrap */
+    background-color: #0d6efd;
     color: #fff;
     border-color: #0d6efd;
   }

@@ -1,6 +1,7 @@
 @extends('layouts.admin.app')
 
 @push('styles')
+
 <style>
     table img {
         object-fit: cover;
@@ -11,6 +12,7 @@
         vertical-align: middle;
     }
 </style>
+
 @endpush
 
 @section('content')
@@ -21,12 +23,12 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <!-- Tombol Tambah Produk -->
+    <!-- TOMBOL TAMBAH PROUK -->
     <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahProdukModal">
         Tambah Produk
     </button>
 
-    <!-- Tabel Produk Scrollable -->
+    <!-- TABEL SCROLL -->
     <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
         <table class="table align-middle table-striped table-hover shadow-sm border rounded-4 overflow-hidden">
             <thead class="table-light text-center">
@@ -52,7 +54,6 @@
                                 <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editProdukModal{{ $produk->id }}">
                                     <i class="bi bi-pencil-square"></i> Edit
                                 </button>
-
                                 <form action="{{ route('admin.produk.destroy', $produk->id) }}" method="POST" onsubmit="return confirm('Yakin ingin hapus?')">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-sm btn-danger">
@@ -63,7 +64,7 @@
                         </td>
                     </tr>
 
-                    <!-- Modal Edit Produk -->
+                    <!-- MODAL EDIT PRODUK -->
                     <div class="modal fade" id="editProdukModal{{ $produk->id }}" tabindex="-1" aria-labelledby="editProdukModalLabel{{ $produk->id }}" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
@@ -82,19 +83,16 @@
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
-
                                         <div class="mb-3">
                                             <label for="image" class="form-label">Gambar Produk</label>
                                             <input type="file" name="image" class="form-control" id="image{{ $produk->id }}" onchange="previewImage({{ $produk->id }})">
                                             @error('image')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
-
                                             <div class="mt-2">
                                                 <img src="{{ asset('storage/' . $produk->image) }}" id="previewImage{{ $produk->id }}" class="img-fluid" width="120" alt="Preview Gambar">
                                             </div>
                                         </div>
-
                                         <div class="mb-3">
                                             <label for="description" class="form-label">Deskripsi Produk</label>
                                             <textarea name="description" class="form-control" rows="4">{{ $produk->description }}</textarea>
@@ -117,7 +115,7 @@
     </div>
 </div>
 
-<!-- Modal Tambah Produk -->
+<!-- MODAL TAMBAH PRODUK -->
 <div class="modal fade" id="tambahProdukModal" tabindex="-1" aria-labelledby="tambahProdukModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">

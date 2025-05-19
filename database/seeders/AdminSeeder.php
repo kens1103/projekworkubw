@@ -12,18 +12,19 @@ class AdminSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-{
-    $existing = DB::table('users')->where('email', 'admin@example.com')->first();
+    public function run()
+    {
+        $existing = DB::table('users')->where('email', 'admin@example.com')->first();
 
-    if (!$existing) {
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('password123'),
-            'role' => 'admin',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        if (!$existing) {
+            DB::table('users')->insert([
+                'name' => 'Admin',
+                'email' => 'admin@example.com',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
-}}
+}

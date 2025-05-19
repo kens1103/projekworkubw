@@ -12,7 +12,6 @@ class AboutController extends Controller
         $about = About::first(); 
         return view('admin.about.edit', compact('about'));
     }
-
     public function update(Request $request)
     {
 
@@ -26,10 +25,9 @@ class AboutController extends Controller
         return redirect()->back()->with('success', 'Data berhasil diupdate!');
     }
     public function showAbout()
-{
-    $about = About::first(); 
-    return view('wikrama/tentang', compact('about'));
+    {
+        $about = About::first(); 
+        return view('wikrama/tentang', compact('about'));
 
-}
-
+    }
 }

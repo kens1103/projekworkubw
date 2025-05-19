@@ -1,10 +1,12 @@
 @extends('layouts.admin.app')
+
 <style>
     .fade {
         opacity: 0;
         transition: opacity 0.5s ease-out;
     }
 </style>
+
 @section('content')
 <div class="container py-4">
     <h3>Pesan Masuk</h3>
@@ -58,12 +60,11 @@
 
 @push('scripts')
 <script>
-    // Hilangkan alert setelah 3 detik
     setTimeout(function () {
         const alert = document.getElementById('success-alert');
         if (alert) {
             alert.classList.add('fade');
-            setTimeout(() => alert.remove(), 500); // Tunggu transisi
+            setTimeout(() => alert.remove(), 500);
         }
     }, 3000);
 </script>

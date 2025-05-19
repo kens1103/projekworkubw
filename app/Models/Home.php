@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Home extends Model
 {
-    protected $table = 'homes'; // ← tambahkan ini!
+    protected $table = 'homes';
     protected $fillable = ['title', 'description', 'image'];
 }

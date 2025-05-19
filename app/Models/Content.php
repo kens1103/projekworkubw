@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description']; // Sesuaikan dengan kolom yang ada
+    protected $fillable = ['title', 'description'];
 }

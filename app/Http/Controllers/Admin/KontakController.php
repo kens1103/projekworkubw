@@ -14,7 +14,6 @@ class KontakController extends Controller
         $kontak = Kontak::first();
 
         if (!$kontak) {
-            // Buat default jika belum ada
             $kontak = Kontak::create([
                 'telepon' => '',
                 'email' => '',

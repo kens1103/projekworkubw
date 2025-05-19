@@ -48,7 +48,7 @@
 
 @section('content')
 
-<!-- Hero Section -->
+<!-- HERO SECTION -->
 <section class="bg-light" id="about">
   <div class="position-relative w-100 overflow-hidden" style="height: 450px;">
     <img src="/img/header.jpg" class="w-100 h-100 object-fit-cover" alt="About Image">
@@ -60,14 +60,14 @@
   </div>
 </section>
 
-<!-- Portfolio Section -->
+<!-- PORTOFOLIO -->
 <section class="py-5">
   <div class="container px-4">
     <div class="section-title text-center mb-5" data-aos="fade-up">
       <h2 class="fw-bold">Portofolio</h2>
     </div>
 
-    <!-- Galeri Grid -->
+    <!-- GALERI -->
     <div class="row g-4" id="portfolioGrid">
       @foreach($portofolios->take(8) as $item)
         <div class="col-md-6 col-lg-3 portfolio-item" data-aos="fade-up">
@@ -86,7 +86,6 @@
   </div>
 </section>
 
-<!-- JS Load More -->
 <script>
   let currentCount = 8;
   const allPortfolios = @json($portofolios);

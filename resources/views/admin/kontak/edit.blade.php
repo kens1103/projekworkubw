@@ -26,7 +26,6 @@
             <label for="alamat" class="form-label">Alamat</label>
             <input type="text" name="alamat" class="form-control" value="{{ old('alamat', $kontak->alamat) }}" required>
         </div>
-
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>

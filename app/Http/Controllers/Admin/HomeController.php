@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function edit()
     {
-        $home = Home::first(); // Asumsikan hanya satu record
+        $home = Home::first();
         return view('admin.home.edit', compact('home'));
     }
 

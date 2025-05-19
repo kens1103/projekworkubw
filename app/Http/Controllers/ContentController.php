@@ -12,7 +12,6 @@ class ContentController extends Controller
         $contents = Content::all();
         return view('admin.content.index', compact('contents'));
     }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -24,7 +23,6 @@ class ContentController extends Controller
 
         return redirect()->route('admin.content.index')->with('success', 'Konten berhasil ditambahkan.');
     }
-
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -37,7 +35,6 @@ class ContentController extends Controller
 
         return redirect()->route('admin.content.index')->with('success', 'Konten berhasil diperbarui.');
     }
-
     public function destroy($id)
     {
         Content::findOrFail($id)->delete();

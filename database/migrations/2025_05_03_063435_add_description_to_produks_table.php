@@ -9,20 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('produks', function (Blueprint $table) {
-            $table->text('description')->nullable(); // Menambahkan kolom description
+            $table->text('description')->nullable();
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::table('produks', function (Blueprint $table) {
-            $table->dropColumn('description'); // Menghapus kolom description jika rollback
+            $table->dropColumn('description');
         });
     }
 };

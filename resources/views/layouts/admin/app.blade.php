@@ -22,7 +22,6 @@
             margin: 0;
             background-color: #f5f7fa;
         }
-
         .sidebar {
             position: fixed;
             top: 0;
@@ -34,37 +33,30 @@
             overflow-y: auto;
             z-index: 1000;
         }
-
         .sidebar a {
             color: white;
             text-decoration: none;
             display: block;
             padding: 10px 20px;
         }
-
         .sidebar a:hover {
             background: #495057;
         }
-
         .dropdown-menu {
             background-color: #343a40;
         }
-
         .dropdown-menu .dropdown-item {
             color: white;
         }
-
         .dropdown-menu .dropdown-item:hover {
             background-color: #495057;
         }
-
         .content-wrapper {
             margin-left: 220px;
             padding: 30px;
             height: 100vh;
             overflow-y: auto;
         }
-
         .card {
             border-radius: 12px;
         }

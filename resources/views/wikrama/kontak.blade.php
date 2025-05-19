@@ -2,7 +2,6 @@
 
 @section('content')
 
-<!-- Hero Section Full Width untuk About Page -->
 <section class="bg-light" id="about">
   <div class="position-relative w-100 overflow-hidden" style="height: 450px;">
     <img src="/img/header.jpg" class="w-100 h-100 object-fit-cover" alt="About Image">
@@ -14,7 +13,7 @@
   </div>
 </section>
 
-<!-- Contact Form -->
+<!-- FORM KONTAK -->
 <section class="py-5">
   <div class="container">
     <h3 class="text-center mb-4 fw-bold">Kirim Pesan</h3>
@@ -43,7 +42,7 @@
   </div>
 </section>
 
-<!-- Contact Info Section -->
+<!-- KONTAK INFO -->
 <section class="py-5 bg-white">
   <div class="container">
     <div class="row text-center g-4">
@@ -72,7 +71,7 @@
   </div>
 </section>
 
-<!-- Maps Section -->
+<!-- MAPS -->
 <section class="py-5">
   <div class="container d-flex justify-content-center">
     <div class="rounded-4 overflow-hidden shadow" style="height: 500px; width: 1000px;">
@@ -85,7 +84,7 @@
 </section>
 
 @if(session('success'))
-<!-- Modal Pop-up Berhasil -->
+<!-- MODAL POP UP BERHASIL FORM KONTAK -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content text-center">

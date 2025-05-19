@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/main/app.blade.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,9 +17,6 @@
     <!-- GLightbox CSS -->
     <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
 
-    <style>
-      /* Custom CSS for Main User */
-    </style>
 </head>
 <body>
 

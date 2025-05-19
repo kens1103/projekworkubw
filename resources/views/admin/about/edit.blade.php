@@ -26,7 +26,7 @@
         border-radius: 12px;
     }
     .accordion-item {
-        margin-bottom: 1rem; /* Memberikan jarak antar accordion */
+        margin-bottom: 1rem;
     }
     .accordion-button {
         border-radius: 0.375rem;
@@ -47,7 +47,7 @@
     @method('PUT')
 
     <div class="accordion mb-3" id="accordionAbout">
-        <!-- Judul -->
+        <!-- JUDUL -->
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTitle">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTitle" aria-expanded="false" aria-controls="collapseTitle">
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <!-- Visi -->
+        <!-- VISI -->
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingVisi">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVisi" aria-expanded="false" aria-controls="collapseVisi">
@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <!-- Misi -->
+        <!-- MISI -->
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingMisi">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMisi" aria-expanded="false" aria-controls="collapseMisi">
@@ -93,7 +93,7 @@
     <button type="button" class="btn btn-primary mt-3" onclick="openConfirmationModal()">Update</button>
 </form>
 
-<!-- Modal Konfirmasi -->
+<!-- MODAL KONFIRMASI -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -127,7 +127,6 @@
     }
 </script>
 <script>
-    // Inisialisasi dropdown Bootstrap di sidebar
     document.addEventListener('DOMContentLoaded', function () {
         const dropdownElements = document.querySelectorAll('.dropdown-toggle');
         dropdownElements.forEach(function(dropdownElement) {
@@ -135,7 +134,6 @@
         });
     });
 </script>
-
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 @endsection
