@@ -23,7 +23,7 @@
 <!-- SECTION TENTANG KAMI -->
 <div class="row align-items-center g-5">
   <div class="col-lg-6" data-aos="fade-right">
-    <img src="/img/produklayanan.jpg" alt="Tentang Kami" class="img-fluid rounded-4 shadow">
+    <img src="{{asset ('/img/produklayanan.jpg')}}" alt="Tentang Kami" class="img-fluid rounded-4 shadow">
   </div>
       <div class="col-lg-6" data-aos="fade-left">
         <p class="lead text-muted">
