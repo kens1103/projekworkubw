@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Portofolio extends Model
 {
-    use HasFactory;
-    protected $fillable = ['image', 'category'];
+    protected $fillable = ['title', 'description', 'image', 'pdf_path'];
 
+    public function additionalImages()
+    {
+        return $this->hasMany(PortofolioImage::class);
+    }
 }
