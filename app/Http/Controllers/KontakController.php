@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PesanTerkirimMail;
 use App\Models\Kontak;
 
 class KontakController extends Controller
@@ -23,7 +25,18 @@ class KontakController extends Controller
     }
     public function kirimPesan(Request $request)
     {
-        \App\Models\Pesan::create($request->only(['name', 'email', 'message']));
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
+        ]);
+
+        // Simpan ke database
+        \App\Models\Pesan::create($validated);
+
+        // Kirim email ke user
+        Mail::to($validated['email'])->queue(new PesanTerkirimMail($validated['name']));
+
         return back()->with('success', 'Pesan berhasil dikirim!');
     }
     public function show()
