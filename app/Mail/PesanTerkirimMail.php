@@ -22,7 +22,7 @@ class PesanTerkirimMail extends Mailable
 
     public function build()
     {
-        return $this->subject('Pesan Anda Berhasil Dikirim')
+        return $this->subject('Pesan Anda Berhasil Diterima!')
                     ->replyTo('ubwtefawisaga@gmail.com', 'UBW TeFa')
                     ->view('emails.pesan_terkirim');
     }

@@ -18,7 +18,7 @@
 
     <br>
     <p>Hormat kami,</p>
-    <p><strong>Tim UBW TeFa Wikrama 1 Garut</strong><br>
+    <p><strong>Tim UBW TeFa Wisaga</strong><br>
     Email: ubwtefawisaga@gmail.com<br>
     Telepon: 0812-3456-7890</p>
 

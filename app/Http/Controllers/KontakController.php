@@ -34,7 +34,7 @@ class KontakController extends Controller
         // Simpan ke database
         \App\Models\Pesan::create($validated);
 
-        // Kirim email ke user
+        // Kirim email ke pengguna
         Mail::to($validated['email'])->queue(new PesanTerkirimMail($validated['name']));
 
         return back()->with('success', 'Pesan berhasil dikirim!');
