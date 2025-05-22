@@ -1,117 +1,120 @@
 @extends('layouts.app')
 
-<style>
-  .portfolio-wrap {
-    overflow: hidden;
-    border-radius: 1rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    position: relative;
-    transition: transform 0.5s ease, filter 0.5s ease;
-    aspect-ratio: 1 / 1;
-    height: 250px;
-  }
-
-  .portfolio-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease, filter 0.5s ease;
-    border-radius: 1rem;
-  }
-
-  .portfolio-wrap:hover img {
-    transform: scale(1.05);
-    filter: brightness(85%);
-  }
-
-  .portfolio-info {
-    position: absolute;
-    bottom: 0;
-    background: rgba(33, 37, 41, 0.8);
-    width: 100%;
-    padding: 15px;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-
-  .portfolio-wrap:hover .portfolio-info {
-    opacity: 1;
-  }
-
-  .portfolio-info h4, .portfolio-info p {
-    color: #fff;
-    margin: 0;
-  }
-</style>
-
 @section('content')
-
 <!-- HERO SECTION -->
-<section class="bg-light" id="about">
+<section class="bg-light">
   <div class="position-relative w-100 overflow-hidden" style="height: 450px;">
     <img src="/img/header.jpg" class="w-100 h-100 object-fit-cover" alt="About Image">
     <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
-    <div class="position-absolute top-50 start-50 translate-middle text-white text-center" data-aos="fade-up">
-      <h1 class="display-5 fw-bold">Portofolio</h1>
-      <p class="fs-6 mt-3">Menampilkan hasil karya terbaik dari UBW TeFa Wikrama 1 Garut.</p>
+    <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+      <h1 class="display-5 fw-bold">Katalog Portofolio</h1>
+      <p class="fs-6 mt-3">Kumpulan karya terbaik dari UBW TeFa Wikrama 1 Garut.</p>
     </div>
   </div>
 </section>
 
-<!-- PORTOFOLIO -->
+<!-- KATALOG -->
 <section class="py-5">
-  <div class="container px-4">
-    <div class="section-title text-center mb-5" data-aos="fade-up">
-      <h2 class="fw-bold">Portofolio</h2>
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <h2 class="fw-bold">Katalog Portofolio</h2>
     </div>
 
-    <!-- GALERI -->
-    <div class="row g-4" id="portfolioGrid">
-      @foreach($portofolios->take(8) as $item)
-        <div class="col-md-6 col-lg-3 portfolio-item" data-aos="fade-up">
-          <div class="portfolio-wrap">
-            <img src="{{ asset($item->image) }}" alt="Portofolio">
+    <div class="row g-4" id="katalog-container">
+      @foreach($portofolios as $item)
+      <div class="col-md-6 col-lg-3 katalog-item" data-aos="fade-up">
+        <div class="card h-100 shadow-sm" data-bs-toggle="modal" data-bs-target="#modal{{ $item->id }}" style="cursor: pointer;">
+          <img src="{{ asset($item->image) }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ $item->title }}</h5>
           </div>
         </div>
+      </div>
+
+      <!-- MODAL -->
+      <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel{{ $item->id }}">{{ $item->title }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+              <div class="row">
+                <!-- Gambar utama -->
+                <div class="col-md-6">
+                  <img src="{{ asset($item->image) }}" class="img-fluid rounded shadow-sm mb-3" style="object-fit: cover; width: 100%; height: 300px;">
+                </div>
+
+                <!-- Deskripsi dan tombol -->
+                <div class="col-md-6 d-flex flex-column justify-content-between">
+                  <div>
+                    <h5>{{ $item->title }}</h5>
+                    <p>{{ $item->description }}</p>
+                  </div>
+                  <div>
+                    @if($item->pdf_path)
+                      <a href="{{ asset($item->pdf_path) }}" class="btn btn-outline-dark mb-2" target="_blank">Unduh PDF</a>
+                    @endif
+                  </div>
+                </div>
+              </div>
+
+              <!-- Gambar produk lainnya -->
+              @if($item->images && count($item->images))
+              <div class="mt-4">
+                <h6 class="fw-bold">Produk Terkait:</h6>
+                <div class="row g-3">
+                  @foreach($item->images as $img)
+                    <div class="col-md-4">
+                      <img src="{{ asset($img->image_path) }}" class="img-fluid rounded shadow-sm" style="height: 200px; object-fit: cover;">
+                    </div>
+                  @endforeach
+                </div>
+              </div>
+              @endif
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+          </div>
+        </div>
+      </div>
       @endforeach
     </div>
 
-    @if($portofolios->count() > 8)
-    <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="600">
-      <button class="btn btn-outline-dark rounded-pill px-4 py-2" id="loadMoreBtn">Lihat Lebih Banyak</button>
+    <!-- Lihat Lebih Banyak -->
+    <div class="text-center mt-4">
+      <button class="btn btn-dark" id="loadMoreBtn">Lihat Lebih Banyak</button>
     </div>
-    @endif
   </div>
 </section>
 
+<!-- JS Show More -->
 <script>
-  let currentCount = 8;
-  const allPortfolios = @json($portofolios);
-  const grid = document.getElementById('portfolioGrid');
-  const loadBtn = document.getElementById('loadMoreBtn');
+  document.addEventListener("DOMContentLoaded", function() {
+    let items = document.querySelectorAll('.katalog-item');
+    let loadMoreBtn = document.getElementById('loadMoreBtn');
+    let visible = 8;
 
-  loadBtn?.addEventListener('click', () => {
-    const nextItems = allPortfolios.slice(currentCount, currentCount + 4);
+    function updateVisibility() {
+      items.forEach((el, index) => {
+        el.style.display = index < visible ? 'block' : 'none';
+      });
 
-    nextItems.forEach(item => {
-      const col = document.createElement('div');
-      col.className = 'col-md-6 col-lg-3 portfolio-item';
-      col.setAttribute('data-aos', 'fade-up');
-
-      col.innerHTML = `
-        <div class="portfolio-wrap">
-          <img src="${item.image}" alt="Portofolio">
-      `;
-
-      grid.appendChild(col);
-    });
-
-    currentCount += 4;
-    if (currentCount >= allPortfolios.length) {
-      loadBtn.style.display = 'none';
+      if (visible >= items.length) {
+        loadMoreBtn.style.display = 'none';
+      }
     }
+
+    updateVisibility();
+
+    loadMoreBtn.addEventListener('click', function() {
+      visible += 4;
+      updateVisibility();
+    });
   });
 </script>
 

@@ -12,11 +12,14 @@ return new class extends Migration
     public function up()
 {
     Schema::create('portofolios', function (Blueprint $table) {
-        $table->id();
-        $table->string('image'); 
-        $table->string('category')->nullable();
-        $table->timestamps();
-    });
+    $table->id();
+    $table->string('title');                // Judul portofolio
+    $table->text('description');            // Deskripsi
+    $table->string('image');                // Foto utama
+    $table->string('pdf_path')->nullable(); // File PDF katalog (opsional)
+    $table->string('category')->nullable(); // Kategori (opsional)
+    $table->timestamps();
+});
 }
 
     /**
