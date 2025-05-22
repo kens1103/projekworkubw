@@ -4,16 +4,12 @@
 <style>
     table img {
         object-fit: cover;
-        height: 5px;   /* ukuran lebih kecil */
-        width: auto;    /* lebar menyesuaikan proporsi */
-        border-radius: 6px;
-        border: 1px solid #ddd;
+        height: 60px;
+        width: 80PX;
     }
 
-    .table td,
-    .table th {
+    .table td, .table th {
         vertical-align: middle;
-        text-align: center;
     }
 
     .modal-lg {
@@ -52,7 +48,7 @@
 
 @section('content')
 <div class="container py-4">
-    <h2 class="mb-4 fw-bold text-primary">📁 Manajemen Portofolio</h2>
+    <h2 class="mb-4 fw-bold">Manajemen Portofolio</h2>
 
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -65,40 +61,40 @@
         <i class="bi bi-plus-circle me-1"></i> Tambah Portofolio
     </button>
 
-    <div class="table-responsive shadow-sm rounded-4 border" style="max-height: 600px; overflow-y: auto;">
-        <table class="table table-hover table-striped align-middle mb-0">
-            <thead>
+    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+        <table class="table align-middle table-striped table-hover shadow-sm border rounded-4 overflow-hidden">
+            <thead class="table-light text-center">
                 <tr>
-                    <th>No</th>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>Foto Utama</th>
-                    <th>Tambahan</th>
-                    <th>PDF</th>
-                    <th>Aksi</th>
+                    <th scope="col">No</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Deskripsi</th>
+                    <th scope="col">Foto Utama</th>
+                    <th scope="col">Foto Tambahan</th>
+                    <th scope="col">PDF</th>
+                    <th scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($portofolios as $index => $item)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td class="text-start">{{ $item->title }}</td>
-                    <td class="text-start">{{ Str::limit($item->description, 60) }}</td>
-                    <td>
-                        <img src="{{ asset($item->image) }}" alt="Utama">
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-center">{{ $item->title }}</td>
+                    <td class="text-center">{{ Str::limit($item->description, 60) }}</td>
+                    <td class="text-center">
+                        <img src="{{ asset($item->image) }}" alt="Foto Utama" width="80" class="rounded shadow-sm border">
                     </td>
-                    <td>
+                    <td class="text-center">
                         @if($item->additionalImages->count())
                             <div class="img-container">
                                 @foreach ($item->additionalImages as $img)
-                                    <img src="{{ asset($img->image) }}" alt="Tambahan">
+                                    <img src="{{ asset($img->image) }}" alt="Foto Tambahan" width="80" class="rounded shadow-sm border">
                                 @endforeach
                             </div>
                         @else
                             <span class="badge bg-secondary">Kosong</span>
                         @endif
                     </td>
-                    <td>
+                    <td class="text-center">
                         @if ($item->pdf_path)
                             <a href="{{ asset($item->pdf_path) }}" target="_blank" class="btn btn-sm btn-outline-danger">
                                 <i class="bi bi-file-earmark-pdf-fill"></i> Lihat
@@ -107,7 +103,7 @@
                             <span class="text-muted">-</span>
                         @endif
                     </td>
-                    <td>
+                    <td class="text-center">
                         <a href="{{ route('admin.portofolio.edit', $item->id) }}" class="btn btn-sm btn-primary">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
