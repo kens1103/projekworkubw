@@ -36,9 +36,6 @@ Route::get('/portofolio', function () {
 Route::get('/kontak', function () {
     return view('wikrama.kontak');
 });
-Route::get('/promo', function () {
-    return view('wikrama.biaya');
-});
 
 
     // Dashboard
