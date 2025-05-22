@@ -4,13 +4,16 @@
 <style>
     table img {
         object-fit: cover;
-        height: 40px;
-        width: 50px;
+        height: 5px;   /* ukuran lebih kecil */
+        width: auto;    /* lebar menyesuaikan proporsi */
         border-radius: 6px;
+        border: 1px solid #ddd;
     }
 
-    .table td, .table th {
+    .table td,
+    .table th {
         vertical-align: middle;
+        text-align: center;
     }
 
     .modal-lg {
@@ -24,6 +27,25 @@
     .table thead th {
         background-color: #f8f9fa;
         font-weight: 600;
+    }
+
+    .table td .btn {
+        margin: 0 2px;
+    }
+
+    .img-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        justify-content: center;
+    }
+
+    .img-container img {
+        width: 35px;    /* sesuaikan ukuran gambar tambahan */
+        height: 35px;
+        object-fit: cover;
+        border-radius: 4px;
+        border: 1px solid #ccc;
     }
 </style>
 @endpush
@@ -45,7 +67,7 @@
 
     <div class="table-responsive shadow-sm rounded-4 border" style="max-height: 600px; overflow-y: auto;">
         <table class="table table-hover table-striped align-middle mb-0">
-            <thead class="text-center">
+            <thead>
                 <tr>
                     <th>No</th>
                     <th>Judul</th>
@@ -59,33 +81,43 @@
             <tbody>
                 @forelse($portofolios as $index => $item)
                 <tr>
-                    <td class="text-center">{{ $index + 1 }}</td>
-                    <td>{{ $item->title }}</td>
-                    <td>{{ Str::limit($item->description, 60) }}</td>
-                    <td class="text-center">
+                    <td>{{ $index + 1 }}</td>
+                    <td class="text-start">{{ $item->title }}</td>
+                    <td class="text-start">{{ Str::limit($item->description, 60) }}</td>
+                    <td>
                         <img src="{{ asset($item->image) }}" alt="Utama">
                     </td>
-                    <td class="text-center">
+                    <td>
                         @if($item->additionalImages->count())
-                            @foreach ($item->additionalImages as $img)
-                                <img src="{{ asset($img->image) }}" alt="Tambahan" class="border rounded me-1 mb-1">
-                            @endforeach
+                            <div class="img-container">
+                                @foreach ($item->additionalImages as $img)
+                                    <img src="{{ asset($img->image) }}" alt="Tambahan">
+                                @endforeach
+                            </div>
                         @else
                             <span class="badge bg-secondary">Kosong</span>
                         @endif
                     </td>
-                    <td class="text-center">
+                    <td>
                         @if ($item->pdf_path)
                             <a href="{{ asset($item->pdf_path) }}" target="_blank" class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-file-earmark-pdf-fill"></i> PDF
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Lihat
                             </a>
                         @else
                             <span class="text-muted">-</span>
                         @endif
                     </td>
-                    <td class="text-center">
-                        {{-- Tombol aksi (jika mau edit/hapus nanti) --}}
-                        <span class="text-muted">-</span>
+                    <td>
+                        <a href="{{ route('admin.portofolio.edit', $item->id) }}" class="btn btn-sm btn-primary">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                        <form action="{{ route('admin.portofolio.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin hapus data ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @empty
@@ -122,11 +154,6 @@
                         <div class="mb-3">
                             <label class="form-label">Foto Utama</label>
                             <input type="file" name="image" class="form-control" accept="image/*" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">File PDF (Katalog Produk)</label>
-                            <input type="file" name="pdf_path" class="form-control" accept="application/pdf">
                         </div>
 
                         <div class="mb-3">

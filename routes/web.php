@@ -53,6 +53,8 @@ Route::get('/kontak', function () {
     Route::get('/dashboard/portofolio', [PortofolioController::class, 'index'])->name('admin.portofolio.index');
     Route::get('/dashboard/portofolio/create', [PortofolioController::class, 'create'])->name('admin.portofolio.create');
     Route::post('/dashboard/portofolio', [PortofolioController::class, 'store'])->name('admin.addPortofolio');
+    Route::get('/dashboard/portofolio/{id}/edit', [PortofolioController::class, 'edit'])->name('admin.portofolio.edit');
+    Route::put('/dashboard/portofolio/{id}', [PortofolioController::class, 'update'])->name('admin.portofolio.update');
     Route::delete('/dashboard/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('admin.deletePortofolio');
 
     Route::get('/kontak', [KontakController::class, 'show'])->name('kontak.show');
@@ -78,8 +80,10 @@ Route::get('/kontak', function () {
         Route::get('/admin/kontak/pesan', [AdminKontakController::class, 'lihatPesan'])->name('admin.kontak.pesan');
 
         Route::get('/portofolio', [PortofolioController::class, 'index'])->name('admin.portofolio.index');
-        Route::post('/portofolio', [PortofolioController::class, 'store'])->name('admin.portofolio.store');
-        Route::delete('/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('admin.portofolio.destroy');
+Route::post('/portofolio', [PortofolioController::class, 'store'])->name('admin.portofolio.store');
+Route::get('/portofolio/{id}/edit', [PortofolioController::class, 'edit'])->name('admin.portofolio.edit');
+Route::put('/portofolio/{id}', [PortofolioController::class, 'update'])->name('admin.portofolio.update');
+Route::delete('/portofolio/{id}', [PortofolioController::class, 'destroy'])->name('admin.portofolio.destroy');
 
         Route::get('/admin/produk', [ProdukController::class, 'index'])->name('admin.produk.index');
         Route::get('/admin/produk/create', [ProdukController::class, 'create'])->name('admin.produk.create');

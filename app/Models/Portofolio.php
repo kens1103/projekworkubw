@@ -12,4 +12,5 @@ class Portofolio extends Model
     {
         return $this->hasMany(PortofolioImage::class);
     }
+    
 }

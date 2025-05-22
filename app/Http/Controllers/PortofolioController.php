@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Portofolio;
 use App\Models\PortofolioImage;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\View;
 
 class PortofolioController extends Controller
 {
@@ -13,42 +15,102 @@ class PortofolioController extends Controller
         $portofolios = Portofolio::all();
         return view('admin.portofolio.index', compact('portofolios'));
     }
+
     public function create()
     {
         return view('admin.portofolio.create');
     }
+
     public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Simpan gambar utama
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('portofolio_images'), $imageName);
+
+        // Simpan ke tabel utama (sementara tanpa pdf_path)
+        $portofolio = Portofolio::create([
+            'image' => 'portofolio_images/' . $imageName,
+            'title' => $request->title,
+            'description' => $request->description,
+            'pdf_path' => null,
+        ]);
+
+        // Simpan gambar tambahan (jika ada)
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $additionalImage) {
+                $addImageName = time() . '_' . $additionalImage->getClientOriginalName();
+                $additionalImage->move(public_path('portofolio_images'), $addImageName);
+
+                PortofolioImage::create([
+                    'portofolio_id' => $portofolio->id,
+                    'image' => 'portofolio_images/' . $addImageName,
+                ]);
+            }
+        }
+
+        // Ambil ulang portofolio lengkap dengan gambar tambahan
+        $portofolio->load('additionalImages');
+
+        // Generate PDF dari view
+        $pdf = Pdf::loadView('admin.portofolio.pdf', compact('portofolio'));
+
+        // Simpan PDF ke folder public
+        $pdfName = 'portofolio_' . time() . '.pdf';
+        $pdf->save(public_path('portofolio_pdfs/' . $pdfName));
+
+        // Update portofolio dengan path PDF-nya
+        $portofolio->update([
+            'pdf_path' => 'portofolio_pdfs/' . $pdfName,
+        ]);
+
+        return redirect()->route('admin.portofolio.index')->with('success', 'Portofolio berhasil ditambahkan.');
+    }
+
+public function edit($id)
 {
+    $portofolio = Portofolio::with('additionalImages')->findOrFail($id);
+    return view('admin.portofolio.edit', compact('portofolio'));
+}
+
+public function update(Request $request, $id)
+{
+    $portofolio = Portofolio::findOrFail($id);
+
     $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'pdf_path' => 'nullable|mimes:pdf',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
-    // Simpan gambar utama
-    $image = $request->file('image');
-    $imageName = time() . '_' . $image->getClientOriginalName();
-    $image->move(public_path('portofolio_images'), $imageName);
+    // Jika user upload gambar utama baru
+    if ($request->hasFile('image')) {
+        // Hapus gambar lama
+        if (file_exists(public_path($portofolio->image))) {
+            unlink(public_path($portofolio->image));
+        }
 
-    // Simpan file PDF jika ada
-    $pdfName = null;
-    if ($request->hasFile('pdf_path')) {
-        $pdf = $request->file('pdf_path');
-        $pdfName = time() . '_' . $pdf->getClientOriginalName();
-        $pdf->move(public_path('portofolio_pdfs'), $pdfName);
+        // Simpan gambar baru
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('portofolio_images'), $imageName);
+        $portofolio->image = 'portofolio_images/' . $imageName;
     }
 
-    // Simpan ke tabel utama
-    $portofolio = Portofolio::create([
-        'image' => 'portofolio_images/' . $imageName,
-        'title' => $request->title,
-        'description' => $request->description,
-        'pdf_path' => $pdfName ? 'portofolio_pdfs/' . $pdfName : null,
-    ]);
+    // Update judul dan deskripsi
+    $portofolio->title = $request->title;
+    $portofolio->description = $request->description;
+    $portofolio->save();
 
-    // Simpan gambar tambahan (jika ada)
+    // Tambah gambar tambahan baru (jika ada)
     if ($request->hasFile('images')) {
         foreach ($request->file('images') as $additionalImage) {
             $addImageName = time() . '_' . $additionalImage->getClientOriginalName();
@@ -61,20 +123,39 @@ class PortofolioController extends Controller
         }
     }
 
-    return redirect()->route('admin.portofolio.index')->with('success', 'Portofolio berhasil ditambahkan.');
+    return redirect()->route('admin.portofolio.index')->with('success', 'Portofolio berhasil diperbarui.');
 }
+
+
     public function destroy($id)
     {
         $portofolio = Portofolio::findOrFail($id);
-        $imagePath = public_path($portofolio->image);
 
+        // Hapus gambar utama
+        $imagePath = public_path($portofolio->image);
         if (file_exists($imagePath)) {
             unlink($imagePath);
         }
 
+        // Hapus PDF jika ada
+        if ($portofolio->pdf_path && file_exists(public_path($portofolio->pdf_path))) {
+            unlink(public_path($portofolio->pdf_path));
+        }
+
+        // Hapus gambar tambahan
+        foreach ($portofolio->additionalImages as $img) {
+            $addImagePath = public_path($img->image);
+            if (file_exists($addImagePath)) {
+                unlink($addImagePath);
+            }
+            $img->delete();
+        }
+
         $portofolio->delete();
-        return redirect()->route('admin.portofolio.index')->with('success', 'Foto portofolio berhasil dihapus.');
+
+        return redirect()->route('admin.portofolio.index')->with('success', 'Portofolio berhasil dihapus.');
     }
+
     public function showPortofolioPage()
     {
         $portofolios = Portofolio::latest()->get();
