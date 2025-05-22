@@ -9,8 +9,7 @@
 
     <p>Terima kasih telah menghubungi <strong>UBW TeFa Wisaga</strong>.</p>
 
-    <p>Kami telah menerima pesan Anda dan sangat menghargai waktu serta kepercayaan 
-        yang telah Anda berikan. Tim kami akan segera meninjau pesan Anda dan 
+    <p>Kami telah menerima pesan Anda. Tim kami akan segera meninjau pesan Anda dan 
         memberikan tanggapan secepat mungkin.</p>
 
     <p>Jika Anda memiliki pertanyaan lanjutan atau informasi tambahan yang ingin disampaikan, 
