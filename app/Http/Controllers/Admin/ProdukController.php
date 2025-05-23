@@ -19,50 +19,54 @@ class ProdukController extends Controller
         return view('admin.produk.create');
     }
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'description' => 'required|string|max:1000',
-        ]);
-    
-        $path = $request->file('image')->store('produk', 'public');
-    
-        Produk::create([
-            'title' => $request->title,
-            'image' => $path,
-            'description' => $request->description,
-        ]);
-    
-        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan!');
-    }
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'kategori' => 'required|string|max:255', // tambahkan validasi kategori
+        'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'description' => 'required|string|max:1000',
+    ]);
+
+    $path = $request->file('image')->store('produk', 'public');
+
+    Produk::create([
+        'title' => $request->title,
+        'kategori' => $request->kategori, // simpan kategori
+        'image' => $path,
+        'description' => $request->description,
+    ]);
+
+    return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan!');
+}
     public function edit($id)
     {
         $produk = Produk::findOrFail($id);
         return view('admin.produk.edit', compact('produk'));
     }
     public function update(Request $request, $id)
-    {
-        $produk = Produk::findOrFail($id);
-    
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'description' => 'nullable|string|max:1000',
-        ]);
-    
-        if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($produk->image);
-            $path = $request->file('image')->store('produk', 'public');
-            $produk->image = $path;
-        }
-    
-        $produk->title = $request->title;
-        $produk->description = $request->description;
-        $produk->save();
-    
-        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diupdate!');
+{
+    $produk = Produk::findOrFail($id);
+
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'kategori' => 'required|string|max:255', // validasi kategori juga
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'description' => 'nullable|string|max:1000',
+    ]);
+
+    if ($request->hasFile('image')) {
+        Storage::disk('public')->delete($produk->image);
+        $path = $request->file('image')->store('produk', 'public');
+        $produk->image = $path;
     }
+
+    $produk->title = $request->title;
+    $produk->kategori = $request->kategori; // update kategori
+    $produk->description = $request->description;
+    $produk->save();
+
+    return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diupdate!');
+}
     public function destroy($id)
     {
         $produk = Produk::findOrFail($id);

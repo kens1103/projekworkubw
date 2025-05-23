@@ -29,40 +29,43 @@
     </button>
 
     <!-- TABEL SCROLL -->
-    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
-        <table class="table align-middle table-striped table-hover shadow-sm border rounded-4 overflow-hidden">
-            <thead class="table-light text-center">
+<div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+    <table class="table align-middle table-striped table-hover shadow-sm border rounded-4 overflow-hidden">
+        <thead class="table-light text-center">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Judul</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Gambar</th>
+                <th scope="col">Deskripsi</th>
+                <th scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($produks as $produk)
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Judul</th>
-                    <th scope="col">Gambar</th>
-                    <th scope="col">Deskripsi</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($produks as $produk)
-                    <tr>
-                        <td class="text-center">{{ $loop->iteration }}</td>
-                        <td class="text-center">{{ $produk->title }}</td>
-                        <td class="text-center">
-                            <img src="{{ asset('storage/' . $produk->image) }}" alt="Gambar" width="80" class="rounded shadow-sm border">
-                        </td>
-                        <td class="text-center">{{ Str::limit($produk->description, 50) }}</td>
-                        <td class="text-center">
-                            <div class="d-flex justify-content-center gap-2">
-                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editProdukModal{{ $produk->id }}">
-                                    <i class="bi bi-pencil-square"></i> Edit
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-center">{{ $produk->title }}</td>
+                    
+                    {{-- Tambahan: kolom kategori --}}
+                    <td class="text-center">{{ $produk->kategori }}</td>
+
+                    <td class="text-center">
+                        <img src="{{ asset('storage/' . $produk->image) }}" alt="Gambar" width="80" class="rounded shadow-sm border">
+                    </td>
+                    <td class="text-center">{{ Str::limit($produk->description, 50) }}</td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editProdukModal{{ $produk->id }}">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </button>
+                            <form action="{{ route('admin.produk.destroy', $produk->id) }}" method="POST" onsubmit="return confirm('Yakin ingin hapus?')">
+                                @csrf @method('DELETE')
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i> Hapus
                                 </button>
-                                <form action="{{ route('admin.produk.destroy', $produk->id) }}" method="POST" onsubmit="return confirm('Yakin ingin hapus?')">
-                                    @csrf @method('DELETE')
-                                    <button class="btn btn-sm btn-danger">
-                                        <i class="bi bi-trash"></i> Hapus
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                            </form>
+                        </div>
 
                     <!-- MODAL EDIT PRODUK -->
                     <div class="modal fade" id="editProdukModal{{ $produk->id }}" tabindex="-1" aria-labelledby="editProdukModalLabel{{ $produk->id }}" aria-hidden="true">
@@ -129,6 +132,19 @@
                     <div class="mb-3">
                         <label for="title" class="form-label">Judul Produk</label>
                         <input type="text" name="title" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kategori" class="form-label">Kategori Produk</label>
+                        <select name="kategori" id="kategori" class="form-control" required>
+                            <option value="">-- Pilih Kategori --</option>
+                            <option value="PMN">PMN</option>
+                            <option value="RPL">RPL</option>
+                            <option value="DKV">DKV</option>
+                            <option value="TKJ">TKJ</option>
+                        </select>
+                        @error('kategori')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Gambar Produk</label>
