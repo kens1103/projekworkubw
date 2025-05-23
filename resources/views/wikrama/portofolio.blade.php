@@ -17,82 +17,82 @@
 <section class="py-5">
   <div class="container">
     <div class="section-title text-center mb-5">
-      <h2 class="fw-bold">Katalog Portofolio</h2>
+      <h2 class="fw-bold" data-aos="fade-up">Katalog Portofolio</h2>
     </div>
 
     <div class="row g-4" id="katalog-container">
       @foreach($portofolios as $item)
       <div class="col-md-6 col-lg-3 katalog-item" data-aos="fade-up">
-        <div class="card h-100 shadow-sm" data-bs-toggle="modal" data-bs-target="#modal{{ $item->id }}" style="cursor: pointer;">
-          <img src="{{ asset($item->image) }}" class="card-img-top" style="height: 200px; object-fit: cover;">
-          <div class="card-body text-center">
-            <h5 class="card-title">{{ $item->title }}</h5>
+        <div class="card h-100 shadow rounded-4 text-center" data-bs-toggle="modal" data-bs-target="#modal{{ $item->id }}" style="cursor: pointer;">
+          <div class="overflow-hidden rounded-top-4" style="height: 200px;">
+            <img src="{{ asset($item->image) }}" 
+                class="w-100 h-100 object-fit-cover img-hover-zoom-dark" 
+                style="max-height: 100%; max-width: 100%; object-fit: contain;">
+          </div>
+          <div class="card-body d-flex flex-column align-items-center">
+            <h5 class="card-title fw-bold text-sm mb-2">{{ $item->title }}</h5>
           </div>
         </div>
       </div>
 
-     <!-- MODAL -->
-<div class="modal fade" id="modal{{ $item->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel{{ $item->id }}">{{ $item->title }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <div class="row">
-          <!-- Gambar utama -->
-          <div class="col-md-6">
-            <img src="{{ asset($item->image) }}" class="img-fluid rounded shadow-sm mb-3" style="object-fit: cover; width: 100%; height: 300px;">
-          </div>
-
-          <!-- Deskripsi dan tombol -->
-          <div class="col-md-6 d-flex flex-column justify-content-between">
-            <div>
-              <h5>{{ $item->title }}</h5>
-              <p>{{ $item->description }}</p>
+      <!-- MODAL -->
+      <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel{{ $item->id }}">{{ $item->title }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div>
-              @if($item->pdf_path)
-  <div class="d-flex gap-2 flex-wrap">
-    <a href="{{ asset($item->pdf_path) }}" target="_blank" class="btn btn-outline-primary">
-      <i class="bi bi-eye-fill"></i> Lihat PDF
-    </a>
-    <a href="{{ asset($item->pdf_path) }}" download="Portofolio-{{ $item->id }}.pdf" class="btn btn-outline-danger">
-      <i class="bi bi-download"></i> Unduh PDF
-    </a>
-  </div>
-@endif
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Gambar produk lainnya -->
-        @if($item->additionalImages && $item->additionalImages->count())
-        <div class="mt-4">
-          <h6 class="fw-bold">Foto Tambahan:</h6>
-          <div class="row g-3">
-            @foreach($item->additionalImages as $img)
-              <div class="col-md-4">
-                <img src="{{ asset($img->image) }}" class="img-fluid rounded shadow-sm" style="height: 200px; object-fit: cover; width: 100%;">
+            <div class="modal-body bg-transparent">
+              <div class="row">
+                <!-- FOTO UTAMA -->
+                <div class="col-md-6 bg-transparent">
+                  <div class="d-flex justify-content-center">
+                    <img src="{{ asset($item->image) }}"
+                        class="img-fluid rounded mb-3 mx-auto d-block" 
+                        style="max-height: 150px; max-width: 100%;">
+                  </div>
+                  <!-- FOTO TAMBAHAN -->
+                  @if($item->additionalImages && $item->additionalImages->count())
+                  <div class="mt-2">
+                    <div class="row g-3">
+                      @foreach($item->additionalImages as $img)
+                        <div class="col-md-12 bg-transparent">
+                          <img src="{{ asset($img->image) }}" 
+                              class="img-fluid rounded shadow-sm mx-auto d-block" 
+                              style="max-height: 150px; max-width: 100%;">
+                        </div>
+                      @endforeach
+                    </div>
+                  </div>
+                  @endif
+                </div>
+                <!-- Deskripsi dan tombol -->
+                <div class="col-md-6 d-flex flex-column justify-content-between">
+                  <div>
+                    <h5>{{ $item->title }}</h5>
+                    <p>{{ $item->description }}</p>
+                  </div>
               </div>
-            @endforeach
+            </div>
+          </div>
+          <div class="modal-footer">
+            @if($item->pdf_path)
+              <div class="d-flex gap-2 flex-wrap">
+                <a href="{{ route('admin.portofolio.viewPdf', $item->id) }}" target="_blank" class="btn btn-outline-primary">
+                  <i class="bi bi-eye-fill"></i> Lihat PDF
+                </a>
+                <a href="{{ route('admin.portofolio.downloadPdf', $item->id) }}" class="btn btn-outline-danger">
+                    <i class="bi bi-download"></i> Unduh PDF
+                </a>
+              </div>
+            @endif
           </div>
         </div>
-        @endif
-      </div>
-
-      <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
       </div>
     </div>
+    @endforeach
   </div>
-</div>
-
-      @endforeach
-    </div>
 
     <!-- Lihat Lebih Banyak -->
     <div class="text-center mt-4">

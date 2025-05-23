@@ -96,7 +96,7 @@
                     </td>
                     <td class="text-center">
                         @if ($item->pdf_path)
-                            <a href="{{ asset($item->pdf_path) }}" target="_blank" class="btn btn-sm btn-outline-danger">
+                            <a href="{{ route('admin.portofolio.viewPdf', $item->id) }}" target="_blank" class="btn btn-sm btn-outline-danger">
                                 <i class="bi bi-file-earmark-pdf-fill"></i> Lihat
                             </a>
                         @else

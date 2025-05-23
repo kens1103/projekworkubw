@@ -98,3 +98,5 @@ Route::delete('/portofolio/{id}', [PortofolioController::class, 'destroy'])->nam
     Route::get('/tentang', [AboutController::class, 'showAbout'])->name('about.show');
     Route::get('/admin/about/edit', [AboutController::class, 'edit'])->name('admin.about.edit');
     Route::put('/admin/about/update', [AboutController::class, 'update'])->name('about.update');
+    Route::get('/admin/portofolio/view-pdf/{id}', [PortofolioController::class, 'viewPdf'])->name('admin.portofolio.viewPdf');
+    Route::get('admin/portofolio/download/{id}', [PortofolioController::class, 'downloadPdf'])->name('admin.portofolio.downloadPdf');
