@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app') 
 
 @section('content')
 
@@ -19,10 +19,10 @@
   <div class="container" data-aos="fade-up">
     <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan kami</h2>
 
-    <!-- Filter Kategori Saja -->
-    <div class="row mb-4 justify-content-end">
-      <div class="col-md-4 text-md-end">
-        <select id="kategoriSelect" class="form-select w-auto rounded-pill px-4 py-2">
+    <!-- Filter Kategori Ditengah -->
+    <div class="row mb-5 justify-content-center">
+      <div class="col-md-6 text-center">
+        <select id="kategoriSelect" class="form-select mx-auto rounded-pill px-4 py-2 shadow-sm border-0" style="max-width: 300px; background-color: #f8f9fa;">
           <option value="">Semua Kategori</option>
           @php $kategoriList = $produks->pluck('kategori')->unique(); @endphp
           @foreach($kategoriList as $kategori)
@@ -35,7 +35,12 @@
     <div class="row g-4" id="produkContainer"></div>
 
     @if($produks->count() > 6)
-      <div class="text-center mt-4">
+      <div class="card h-100 shadow rounded-4 text-center" style="cursor: pointer;">
+                  <div class="overflow-hidden rounded-top-4" style="height: 200px;">
+            <img src="{{ asset($item->image) }}" 
+                class="w-100 h-100 object-fit-cover img-hover-zoom-dark" 
+                style="max-height: 100%; max-width: 100%; object-fit: contain;">
+          </div>
         <button id="loadMoreBtn" class="btn btn-outline-dark rounded-pill px-4 py-2">Lihat Lebih Lanjut</button>
       </div>
     @endif
@@ -44,16 +49,26 @@
 
 <!-- Modal Detail Produk -->
 <div class="modal fade" id="produkModal" tabindex="-1" aria-labelledby="produkModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-md modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="produkModalLabel">Detail Produk</h5>
+        <h5 class="modal-title fw-bold" id="produkModalLabel">Detail Produk & Layanan</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img id="modalImage" src="" class="img-fluid mb-3 rounded">
-        <h5 id="modalTitle" class="fw-bold"></h5>
-        <p id="modalDescription"></p>
+        <div class="row">
+          <!-- Gambar Produk -->
+          <div class="col-md-6 d-flex justify-content-center align-items-center mb-3 mb-md-0">
+            <img id="modalImage" src="" alt="Gambar Produk" class="img-fluid rounded shadow-sm img-hover-zoom-dark" style="max-height: 200px; max-width: 100%; object-fit: contain;">
+          </div>
+          <!-- Detail Produk -->
+          <div class="col-md-6 d-flex flex-column justify-content-between">
+            <div>
+              <h5 id="modalTitle" class="fw-bold"></h5>
+              <p id="modalDescription" class="text-muted"></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -73,12 +88,12 @@
       col.className = 'col-lg-4 col-md-6';
       col.innerHTML = `
         <div class="card h-100 shadow rounded-4 text-center produk-item" data-title="${produk.title}" data-kategori="${produk.kategori}">
-          <div class="overflow-hidden rounded-top-4" style="height: 200px; cursor: pointer;" onclick="showModal('${produk.title}', '${produk.description.replace(/'/g, "\'")}', '/storage/${produk.image}')">
+          <div class="overflow-hidden rounded-top-4" style="height: 200px; cursor: pointer;" onclick="showModal('${produk.title.replace(/'/g, "\\'")}', '${produk.description.replace(/'/g, "\\'")}', '/storage/${produk.image}')">
             <img src="/storage/${produk.image}" class="w-100 h-100 object-fit-cover" alt="${produk.title}">
           </div>
           <div class="card-body d-flex flex-column align-items-center">
             <h5 class="card-title fw-bold text-sm mb-2">${produk.title}</h5>
-            <p class="card-text text-muted mb-0">${produk.description.slice(0, 120)}${produk.description.length > 120 ? '...' : ''}</p>
+            <p class="card-text text-muted mb-0">${produk.description.length > 120 ? produk.description.slice(0, 120) + '...' : produk.description}</p>
           </div>
         </div>
       `;

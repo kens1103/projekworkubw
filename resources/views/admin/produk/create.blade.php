@@ -22,9 +22,9 @@
             <select name="kategori" id="kategori" class="form-control" required>
                 <option value="">-- Pilih Kategori --</option>
                 <option value="PMN">PMN</option>
-                <option value="RPL">RPL</option>
-                <option value="DKV">DKV</option>
-                <option value="TKJ">TKJ</option>
+                <option value="RPL">PPLG</option>
+                <option value="DKV">HTL</option>
+                <option value="TKJ">TJKT</option>
             </select>
             @error('kategori')
                 <small class="text-danger">{{ $message }}</small>
