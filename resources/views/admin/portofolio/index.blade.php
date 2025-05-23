@@ -5,7 +5,7 @@
     table img {
         object-fit: cover;
         height: 60px;
-        width: 80PX;
+        width: 80px;
     }
 
     .table td, .table th {
@@ -37,7 +37,7 @@
     }
 
     .img-container img {
-        width: 35px;    /* sesuaikan ukuran gambar tambahan */
+        width: 35px;
         height: 35px;
         object-fit: cover;
         border-radius: 4px;
@@ -67,6 +67,7 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Judul</th>
+                    <th scope="col">Kategori</th>
                     <th scope="col">Deskripsi</th>
                     <th scope="col">Foto Utama</th>
                     <th scope="col">Foto Tambahan</th>
@@ -79,6 +80,7 @@
                 <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="text-center">{{ $item->title }}</td>
+                    <td class="text-center">{{ $item->kategori ?? '-' }}</td>
                     <td class="text-center">{{ Str::limit($item->description, 60) }}</td>
                     <td class="text-center">
                         <img src="{{ asset($item->image) }}" alt="Foto Utama" width="80" class="rounded shadow-sm border">
@@ -87,7 +89,7 @@
                         @if($item->additionalImages->count())
                             <div class="img-container">
                                 @foreach ($item->additionalImages as $img)
-                                    <img src="{{ asset($img->image) }}" alt="Foto Tambahan" width="80" class="rounded shadow-sm border">
+                                    <img src="{{ asset($img->image) }}" alt="Foto Tambahan" class="rounded shadow-sm border">
                                 @endforeach
                             </div>
                         @else
@@ -118,7 +120,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="7" class="text-center text-muted">Belum ada portofolio.</td>
+                    <td colspan="8" class="text-center text-muted">Belum ada portofolio.</td>
                 </tr>
                 @endforelse
             </tbody>
@@ -141,6 +143,21 @@
                             <label class="form-label">Judul</label>
                             <input type="text" name="title" class="form-control" placeholder="Masukkan judul portofolio..." required>
                         </div>
+
+                       <div class="mb-3">
+            <label for="kategori" class="form-label">Kategori Produk</label>
+            <select name="kategori" id="kategori" class="form-control" required>
+                <option value="">-- Pilih Kategori --</option>
+                <option value="PMN">PMN</option>
+                <option value="RPL">PPLG</option>
+                <option value="DKV">HTL</option>
+                <option value="TKJ">TKJ</option>
+            </select>
+            @error('kategori')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
 
                         <div class="mb-3">
                             <label class="form-label">Deskripsi</label>

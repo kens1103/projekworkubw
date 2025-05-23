@@ -20,9 +20,22 @@
       <h2 class="fw-bold" data-aos="fade-up">Katalog Portofolio</h2>
     </div>
 
+    <!-- Filter Kategori Saja -->
+    <div class="row mb-4 justify-content-end">
+      <div class="col-md-4 text-md-end">
+        <select id="kategoriSelect" class="form-select w-auto rounded-pill px-4 py-2">
+          <option value="">Semua Kategori</option>
+          @php $kategoriList = $portofolios->pluck('kategori')->unique(); @endphp
+          @foreach($kategoriList as $kategori)
+            <option value="{{ $kategori }}">{{ $kategori }}</option>
+          @endforeach
+        </select>
+      </div>
+    </div>
+
     <div class="row g-4" id="katalog-container">
       @foreach($portofolios as $item)
-      <div class="col-md-6 col-lg-3 katalog-item" data-aos="fade-up">
+      <div class="col-md-6 col-lg-3 katalog-item" data-kategori="{{ $item->kategori }}" data-aos="fade-up">
         <div class="card h-100 shadow rounded-4 text-center" data-bs-toggle="modal" data-bs-target="#modal{{ $item->id }}" style="cursor: pointer;">
           <div class="overflow-hidden rounded-top-4" style="height: 200px;">
             <img src="{{ asset($item->image) }}" 
@@ -73,26 +86,26 @@
                     <h5>{{ $item->title }}</h5>
                     <p>{{ $item->description }}</p>
                   </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            @if($item->pdf_path)
-              <div class="d-flex gap-2 flex-wrap">
-                <a href="{{ route('admin.portofolio.viewPdf', $item->id) }}" target="_blank" class="btn btn-outline-primary">
-                  <i class="bi bi-eye-fill"></i> Lihat PDF
-                </a>
-                <a href="{{ route('admin.portofolio.downloadPdf', $item->id) }}" class="btn btn-outline-danger">
-                    <i class="bi bi-download"></i> Unduh PDF
-                </a>
-              </div>
-            @endif
+            <div class="modal-footer">
+              @if($item->pdf_path)
+                <div class="d-flex gap-2 flex-wrap">
+                  <a href="{{ route('admin.portofolio.viewPdf', $item->id) }}" target="_blank" class="btn btn-outline-primary">
+                    <i class="bi bi-eye-fill"></i> Lihat PDF
+                  </a>
+                  <a href="{{ route('admin.portofolio.downloadPdf', $item->id) }}" class="btn btn-outline-danger">
+                      <i class="bi bi-download"></i> Unduh PDF
+                  </a>
+                </div>
+              @endif
+            </div>
           </div>
         </div>
       </div>
+      @endforeach
     </div>
-    @endforeach
-  </div>
 
     <!-- Lihat Lebih Banyak -->
     <div class="text-center mt-4">
@@ -101,7 +114,7 @@
   </div>
 </section>
 
-<!-- JS Show More -->
+<!-- JS Show More + Filter Kategori -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     let items = document.querySelectorAll('.katalog-item');
@@ -109,22 +122,46 @@
     let visible = 8;
 
     function updateVisibility() {
-      items.forEach((el, index) => {
-        el.style.display = index < visible ? 'block' : 'none';
+      const selectedKategori = document.getElementById('kategoriSelect').value;
+      let shownCount = 0;
+
+      items.forEach(el => {
+        const kategori = el.getAttribute('data-kategori');
+        if (!selectedKategori || selectedKategori === kategori) {
+          if (shownCount < visible) {
+            el.style.display = 'block';
+            shownCount++;
+          } else {
+            el.style.display = 'none';
+          }
+        } else {
+          el.style.display = 'none';
+        }
       });
 
-      if (visible >= items.length) {
+      const filteredItemsCount = Array.from(items).filter(el => {
+        const kategori = el.getAttribute('data-kategori');
+        return !selectedKategori || selectedKategori === kategori;
+      }).length;
+
+      if (shownCount >= filteredItemsCount) {
         loadMoreBtn.style.display = 'none';
+      } else {
+        loadMoreBtn.style.display = 'inline-block';
       }
     }
 
-    updateVisibility();
+    document.getElementById('kategoriSelect').addEventListener('change', function() {
+      visible = 8; // Reset visible saat ganti filter kategori
+      updateVisibility();
+    });
 
     loadMoreBtn.addEventListener('click', function() {
       visible += 4;
       updateVisibility();
     });
+
+    updateVisibility();
   });
 </script>
-
 @endsection
