@@ -19,31 +19,31 @@
   <div class="container" data-aos="fade-up">
     <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan kami</h2>
 
-    <!-- Filter Kategori Ditengah -->
+    <!-- Search dan Filter Kategori (Sejajar) -->
     <div class="row mb-5 justify-content-center">
-      <div class="col-md-6 text-center">
-        <select id="kategoriSelect" class="form-select mx-auto rounded-pill px-4 py-2 shadow-sm border-0" style="max-width: 300px; background-color: #f8f9fa;">
+      <div class="col-md-3 col-sm-6 mb-2 mb-md-0">
+        <input type="text" id="searchInput" class="form-control rounded-pill px-4 py-2 shadow-sm border-0"
+               placeholder="Cari produk..." style="background-color: #f8f9fa;">
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <select id="kategoriSelect" class="form-select rounded-pill px-4 py-2 shadow-sm border-0"
+                style="background-color: #f8f9fa;">
           <option value="">Semua Kategori</option>
-          @php $kategoriList = $produks->pluck('kategori')->unique(); @endphp
-          @foreach($kategoriList as $kategori)
-            <option value="{{ $kategori }}">{{ $kategori }}</option>
-          @endforeach
+          <option value="PMN">PMN</option>
+          <option value="RPL">PPLG</option>
+          <option value="DKV">HTL</option>
+          <option value="TKJ">TKJ</option>
         </select>
       </div>
     </div>
 
+    <!-- Daftar Produk -->
     <div class="row g-4" id="produkContainer"></div>
 
-    @if($produks->count() > 6)
-      <div class="card h-100 shadow rounded-4 text-center" style="cursor: pointer;">
-                  <div class="overflow-hidden rounded-top-4" style="height: 200px;">
-            <img src="{{ asset($item->image) }}" 
-                class="w-100 h-100 object-fit-cover img-hover-zoom-dark" 
-                style="max-height: 100%; max-width: 100%; object-fit: contain;">
-          </div>
-        <button id="loadMoreBtn" class="btn btn-outline-dark rounded-pill px-4 py-2">Lihat Lebih Lanjut</button>
-      </div>
-    @endif
+    <!-- Tombol Load More -->
+    <div class="text-center mt-4">
+      <button id="loadMoreBtn" class="btn btn-outline-dark rounded-pill px-4 py-2" style="display: none;">Lihat Lebih Lanjut</button>
+    </div>
   </div>
 </section>
 
@@ -57,11 +57,9 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <!-- Gambar Produk -->
           <div class="col-md-6 d-flex justify-content-center align-items-center mb-3 mb-md-0">
-            <img id="modalImage" src="" alt="Gambar Produk" class="img-fluid rounded shadow-sm img-hover-zoom-dark" style="max-height: 200px; max-width: 100%; object-fit: contain;">
+            <img id="modalImage" src="" alt="Gambar Produk" class="img-fluid rounded shadow-sm" style="max-height: 200px; max-width: 100%; object-fit: contain;">
           </div>
-          <!-- Detail Produk -->
           <div class="col-md-6 d-flex flex-column justify-content-between">
             <div>
               <h5 id="modalTitle" class="fw-bold"></h5>
@@ -80,6 +78,7 @@
   const container = document.getElementById('produkContainer');
   const loadBtn = document.getElementById('loadMoreBtn');
   const kategoriSelect = document.getElementById('kategoriSelect');
+  const searchInput = document.getElementById('searchInput');
 
   function renderProduk(produkList) {
     container.innerHTML = '';
@@ -103,9 +102,14 @@
 
   function filterProduk() {
     const kategori = kategoriSelect.value.toLowerCase();
+    const searchTerm = searchInput.value.toLowerCase();
+
     let filtered = allProduks.filter(p => {
-      return !kategori || p.kategori.toLowerCase() === kategori;
+      const matchKategori = !kategori || p.kategori.toLowerCase() === kategori;
+      const matchSearch = !searchTerm || p.title.toLowerCase().includes(searchTerm) || p.description.toLowerCase().includes(searchTerm);
+      return matchKategori && matchSearch;
     });
+
     renderProduk(filtered.slice(0, currentCount));
     loadBtn.style.display = (filtered.length > currentCount) ? 'block' : 'none';
   }
@@ -117,9 +121,16 @@
     new bootstrap.Modal(document.getElementById('produkModal')).show();
   }
 
+  // Initial render
   renderProduk(allProduks.slice(0, currentCount));
 
+  // Event listeners
   kategoriSelect?.addEventListener('change', () => {
+    currentCount = 6;
+    filterProduk();
+  });
+
+  searchInput?.addEventListener('input', () => {
     currentCount = 6;
     filterProduk();
   });

@@ -20,22 +20,27 @@
       <h2 class="fw-bold" data-aos="fade-up">Katalog Portofolio</h2>
     </div>
 
-    <!-- Filter Kategori Saja -->
-    <div class="row mb-4 justify-content-end">
-      <div class="col-md-4 text-md-end">
-        <select id="kategoriSelect" class="form-select w-auto rounded-pill px-4 py-2">
+    <!-- Search dan Filter Kategori -->
+    <div class="row mb-5 justify-content-center">
+      <div class="col-md-3 col-sm-6 mb-2 mb-md-0">
+        <input type="text" id="searchInput" class="form-control rounded-pill px-4 py-2 shadow-sm border-0"
+              placeholder="Cari produk..." style="background-color: #f8f9fa;">
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <select id="kategoriSelect" class="form-select rounded-pill px-4 py-2 shadow-sm border-0"
+                style="background-color: #f8f9fa;">
           <option value="">Semua Kategori</option>
-          @php $kategoriList = $portofolios->pluck('kategori')->unique(); @endphp
-          @foreach($kategoriList as $kategori)
-            <option value="{{ $kategori }}">{{ $kategori }}</option>
-          @endforeach
+          <option value="PMN">PMN</option>
+          <option value="PPLG">PPLG</option>
+          <option value="HTL">HTL</option>
+          <option value="TKJ">TKJ</option>
         </select>
       </div>
     </div>
 
     <div class="row g-4" id="katalog-container">
       @foreach($portofolios as $item)
-      <div class="col-md-6 col-lg-3 katalog-item" data-kategori="{{ $item->kategori }}" data-aos="fade-up">
+      <div class="col-md-6 col-lg-3 katalog-item" data-kategori="{{ $item->kategori }}" data-title="{{ strtolower($item->title) }}" data-aos="fade-up">
         <div class="card h-100 shadow rounded-4 text-center" data-bs-toggle="modal" data-bs-target="#modal{{ $item->id }}" style="cursor: pointer;">
           <div class="overflow-hidden rounded-top-4" style="height: 200px;">
             <img src="{{ asset($item->image) }}" 
@@ -50,7 +55,7 @@
 
       <!-- MODAL -->
       <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="modalLabel{{ $item->id }}">{{ $item->title }}</h5>
@@ -80,7 +85,7 @@
                   </div>
                   @endif
                 </div>
-                <!-- Deskripsi dan tombol -->
+                <!-- Deskripsi -->
                 <div class="col-md-6 d-flex flex-column justify-content-between">
                   <div>
                     <h5>{{ $item->title }}</h5>
@@ -96,7 +101,7 @@
                     <i class="bi bi-eye-fill"></i> Lihat PDF
                   </a>
                   <a href="{{ route('admin.portofolio.downloadPdf', $item->id) }}" class="btn btn-outline-danger">
-                      <i class="bi bi-download"></i> Unduh PDF
+                    <i class="bi bi-download"></i> Unduh PDF
                   </a>
                 </div>
               @endif
@@ -107,6 +112,11 @@
       @endforeach
     </div>
 
+    <!-- Pesan Jika Tidak Ditemukan -->
+    <div class="text-center mt-4 d-none" id="notFoundMessage">
+      <p class="text-muted">Portofolio tidak ditemukan.</p>
+    </div>
+
     <!-- Lihat Lebih Banyak -->
     <div class="text-center mt-4">
       <button class="btn btn-dark" id="loadMoreBtn">Lihat Lebih Banyak</button>
@@ -114,20 +124,29 @@
   </div>
 </section>
 
-<!-- JS Show More + Filter Kategori -->
+<!-- JS Filter, Search, Show More -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     let items = document.querySelectorAll('.katalog-item');
     let loadMoreBtn = document.getElementById('loadMoreBtn');
+    let searchInput = document.getElementById('searchInput');
+    let kategoriSelect = document.getElementById('kategoriSelect');
+    let notFoundMessage = document.getElementById('notFoundMessage');
     let visible = 8;
 
     function updateVisibility() {
-      const selectedKategori = document.getElementById('kategoriSelect').value;
+      const selectedKategori = kategoriSelect.value.toLowerCase();
+      const searchTerm = searchInput.value.toLowerCase();
       let shownCount = 0;
 
       items.forEach(el => {
-        const kategori = el.getAttribute('data-kategori');
-        if (!selectedKategori || selectedKategori === kategori) {
+        const kategori = el.getAttribute('data-kategori').toLowerCase();
+        const title = el.getAttribute('data-title');
+
+        const matchKategori = !selectedKategori || selectedKategori === kategori;
+        const matchSearch = !searchTerm || title.includes(searchTerm);
+
+        if (matchKategori && matchSearch) {
           if (shownCount < visible) {
             el.style.display = 'block';
             shownCount++;
@@ -140,8 +159,10 @@
       });
 
       const filteredItemsCount = Array.from(items).filter(el => {
-        const kategori = el.getAttribute('data-kategori');
-        return !selectedKategori || selectedKategori === kategori;
+        const kategori = el.getAttribute('data-kategori').toLowerCase();
+        const title = el.getAttribute('data-title');
+        return (!selectedKategori || selectedKategori === kategori) &&
+               (!searchTerm || title.includes(searchTerm));
       }).length;
 
       if (shownCount >= filteredItemsCount) {
@@ -149,10 +170,21 @@
       } else {
         loadMoreBtn.style.display = 'inline-block';
       }
+
+      if (shownCount === 0) {
+        notFoundMessage.classList.remove('d-none');
+      } else {
+        notFoundMessage.classList.add('d-none');
+      }
     }
 
-    document.getElementById('kategoriSelect').addEventListener('change', function() {
-      visible = 8; // Reset visible saat ganti filter kategori
+    kategoriSelect.addEventListener('change', function() {
+      visible = 8;
+      updateVisibility();
+    });
+
+    searchInput.addEventListener('input', function() {
+      visible = 8;
       updateVisibility();
     });
 
