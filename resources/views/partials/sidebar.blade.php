@@ -12,16 +12,26 @@
             <li><a href="{{ route('admin.dashboard') }}" class="nav-link text-white">Dashboard</a></li>
             <li><a href="{{ route('admin.home.edit') }}" class="nav-link text-white">Beranda</a></li>
             <li><a href="{{ route('admin.about.edit') }}" class="nav-link text-white">Tentang</a></li>
-            <li><a href="{{ route('admin.produk.index') }}" class="nav-link text-white">Produk & Layanan</a></li>
+            
+            <!-- DROPDOWN KONTAK -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Produk & Layanan
+                </a>
+                <ul class="dropdown-menu" style="background-color: grey;">
+                    <li><a class="dropdown-item" href="">Edit Promosi</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.produk.index') }}">Galeri</a></li>
+                </ul>
+            </li>
+
             <li><a href="{{ route('admin.portofolio.index') }}" class="nav-link text-white">Portofolio</a></li>
-    
 
             <!-- DROPDOWN KONTAK -->
-            <li class="nav-item dropdown px-3">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Kontak
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" style="background-color: grey;">
                     <li><a class="dropdown-item" href="{{ route('admin.kontak.edit') }}">Edit Konten Kontak</a></li>
                     <li><a class="dropdown-item" href="{{ route('admin.kontak.pesan') }}">Lihat Pesan Masuk</a></li>
                 </ul>

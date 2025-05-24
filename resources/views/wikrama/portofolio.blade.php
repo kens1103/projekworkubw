@@ -15,7 +15,7 @@
 
 <!-- KATALOG -->
 <section class="py-5">
-  <div class="container">
+  <div class="container" data-aos="fade-up">
     <div class="section-title text-center mb-5">
       <h2 class="fw-bold" data-aos="fade-up">Katalog Portofolio</h2>
     </div>
@@ -111,12 +111,6 @@
       </div>
       @endforeach
     </div>
-
-    <!-- Pesan Jika Tidak Ditemukan -->
-    <div class="text-center mt-4 d-none" id="notFoundMessage">
-      <p class="text-muted">Portofolio tidak ditemukan.</p>
-    </div>
-
     <!-- Lihat Lebih Banyak -->
     <div class="text-center mt-4">
       <button class="btn btn-dark" id="loadMoreBtn">Lihat Lebih Banyak</button>

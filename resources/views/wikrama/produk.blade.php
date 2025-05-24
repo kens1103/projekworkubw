@@ -14,6 +14,100 @@
   </div>
 </section>
 
+<!-- FITUR UNGGULAN -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h2 class="section-title text-center mb-5 fw-bold" data-aos="fade-up">Fitur Unggulan Kami</h2>
+    <div class="row justify-content-center g-4">
+
+      <!-- Fitur 1 -->
+      <div class="col-12" data-aos="fade-right">
+        <div class="d-flex bg-light p-3 rounded-4 shadow-sm position-relative align-items-center mx-auto" style="min-height: 140px; max-width: 800px;">
+          <!-- Gambar -->
+          <div class="flex-shrink-0 me-4">
+            <img src="/img/promosipplg.jpg" alt="fitur" class="rounded" style="width: 100px; height: auto;">
+          </div>
+
+          <!-- Deskripsi -->
+          <div class="flex-grow-1">
+            <h6 class="fw-bold mb-2">Pembuatan Website</h6>
+            <p class="text-muted small mb-0">Jasa pembuatan website untuk UMKM, sekolah, portofolio, toko online, dan lainnya.</p>
+          </div>
+
+          <!-- Harga -->
+          <div class="position-absolute bottom-0 end-0 m-3">
+            <span class="badge bg-success">Rp500.000 - Rp2.500.000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fitur 2 -->
+      <div class="col-12" data-aos="fade-right" data-aos-delay="100">
+        <div class="d-flex bg-light p-3 rounded-4 shadow-sm position-relative align-items-center mx-auto" style="min-height: 140px; max-width: 800px;">
+          <!-- Gambar -->
+          <div class="flex-shrink-0 me-4">
+            <img src="/img/promositjkt.jpg" alt="fitur" class="rounded" style="width: 100px; height: auto;">
+          </div>
+
+          <!-- Deskripsi -->
+          <div class="flex-grow-1">
+            <h6 class="fw-bold mb-2">Instalasi Jaringan LAN/WiFi</h6>
+            <p class="text-muted small mb-0">Pemasangan jaringan internet (kabel & nirkabel) untuk rumah/kantor/sekolah.</p>
+          </div>
+
+          <!-- Harga -->
+          <div class="position-absolute bottom-0 end-0 m-3">
+            <span class="badge bg-success">Rp500.000 - Rp2.000.000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fitur 3 -->
+      <div class="col-12" data-aos="fade-right">
+        <div class="d-flex bg-light p-3 rounded-4 shadow-sm position-relative align-items-center mx-auto" style="min-height: 140px; max-width: 800px;">
+          <!-- Gambar -->
+          <div class="flex-shrink-0 me-4">
+            <img src="/img/promosipmn.jpg" alt="fitur" class="rounded" style="width: 100px; height: auto;">
+          </div>
+
+          <!-- Deskripsi -->
+          <div class="flex-grow-1">
+            <h6 class="fw-bold mb-2">Promosi Produk Online</h6>
+            <p class="text-muted small mb-0">Promosi via media sosial, konten kreatif, dan iklan digital.</p>
+          </div>
+
+          <!-- Harga -->
+          <div class="position-absolute bottom-0 end-0 m-3">
+            <span class="badge bg-success">Rp100.000 - Rp500.000/campaign</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fitur 4 -->
+      <div class="col-12" data-aos="fade-right">
+        <div class="d-flex bg-light p-3 rounded-4 shadow-sm position-relative align-items-center mx-auto" style="min-height: 140px; max-width: 800px;">
+          <!-- Gambar -->
+          <div class="flex-shrink-0 me-4">
+            <img src="/img/promosihtl.jpg" alt="fitur" class="rounded" style="width: 100px; height: auto;">
+          </div>
+
+          <!-- Deskripsi -->
+          <div class="flex-grow-1">
+            <h6 class="fw-bold mb-2">Layanan Room Service/Housekeeping</h6>
+            <p class="text-muted small mb-0">Simulasi dan pelatihan kebersihan kamar seperti housekeeping hotel.</p>
+          </div>
+
+          <!-- Harga -->
+          <div class="position-absolute bottom-0 end-0 m-3">
+            <span class="badge bg-success">Rp200.000 - Rp750.000/paket</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- PRODUK & LAYANAN -->
 <section class="py-5">
   <div class="container" data-aos="fade-up">
