@@ -144,7 +144,6 @@
     <div class="container">
       <div class="section-title text-center mb-5" data-aos="fade-up">
         <h2 class="fw-bold">Portofolio</h2>
-        <p class="text-muted">Hasil karya terbaik UBW TeFa Wikrama 1 Garut.</p>
       </div>
       <div class="row g-4">
         @foreach($portofolios->take(6) as $item)
