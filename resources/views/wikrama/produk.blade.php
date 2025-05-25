@@ -14,10 +14,43 @@
   </div>
 </section>
 
+<!-- PRODUK & LAYANAN -->
+<section class="py-5">
+  <div class="container" data-aos="fade-up">
+    <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan kami</h2>
+
+    <!-- Search dan Filter Kategori (Sejajar) -->
+    <div class="row mb-5 justify-content-center">
+      <div class="col-md-3 col-sm-6 mb-2 mb-md-0">
+        <input type="text" id="searchInput" class="form-control rounded-pill px-4 py-2 shadow-sm border-0"
+               placeholder="Cari produk..." style="background-color: #f8f9fa;">
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <select id="kategoriSelect" class="form-select rounded-pill px-4 py-2 shadow-sm border-0"
+                style="background-color: #f8f9fa;">
+          <option value="">Semua Kategori</option>
+          <option value="PMN">PMN</option>
+          <option value="RPL">PPLG</option>
+          <option value="DKV">HTL</option>
+          <option value="TKJ">TKJ</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Daftar Produk -->
+    <div class="row g-4" id="produkContainer"></div>
+
+    <!-- Tombol Load More -->
+    <div class="text-center mt-4">
+      <button id="loadMoreBtn" class="btn btn-outline-dark rounded-pill px-4 py-2" style="display: none;">Lihat Lebih Lanjut</button>
+    </div>
+  </div>
+</section>
+
 <!-- FITUR UNGGULAN -->
 <section class="py-5 bg-white">
   <div class="container">
-    <h2 class="section-title text-center mb-5 fw-bold" data-aos="fade-up">Fitur Unggulan Kami</h2>
+    <h2 class="section-title text-center mb-5 fw-bold" data-aos="fade-up">Informasi Produk & Layanan</h2>
     <div class="row justify-content-center g-4">
 
       <!-- Fitur 1 -->
@@ -104,39 +137,6 @@
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- PRODUK & LAYANAN -->
-<section class="py-5">
-  <div class="container" data-aos="fade-up">
-    <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan kami</h2>
-
-    <!-- Search dan Filter Kategori (Sejajar) -->
-    <div class="row mb-5 justify-content-center">
-      <div class="col-md-3 col-sm-6 mb-2 mb-md-0">
-        <input type="text" id="searchInput" class="form-control rounded-pill px-4 py-2 shadow-sm border-0"
-               placeholder="Cari produk..." style="background-color: #f8f9fa;">
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <select id="kategoriSelect" class="form-select rounded-pill px-4 py-2 shadow-sm border-0"
-                style="background-color: #f8f9fa;">
-          <option value="">Semua Kategori</option>
-          <option value="PMN">PMN</option>
-          <option value="RPL">PPLG</option>
-          <option value="DKV">HTL</option>
-          <option value="TKJ">TKJ</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Daftar Produk -->
-    <div class="row g-4" id="produkContainer"></div>
-
-    <!-- Tombol Load More -->
-    <div class="text-center mt-4">
-      <button id="loadMoreBtn" class="btn btn-outline-dark rounded-pill px-4 py-2" style="display: none;">Lihat Lebih Lanjut</button>
     </div>
   </div>
 </section>
