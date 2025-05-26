@@ -23,8 +23,8 @@
                 <option value="">-- Pilih Kategori --</option>
                 <option value="PMN">PMN</option>
                 <option value="RPL">PPLG</option>
-                <option value="DKV">HTL</option>
-                <option value="TKJ">TJKT</option>
+                <option value="HTL">HTL</option>
+                <option value="TJKT">TJKT</option>
             </select>
             @error('kategori')
                 <small class="text-danger">{{ $message }}</small>

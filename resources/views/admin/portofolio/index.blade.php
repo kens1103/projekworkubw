@@ -89,7 +89,7 @@
                         @if($item->additionalImages->count())
                             <div class="img-container">
                                 @foreach ($item->additionalImages as $img)
-                                    <img src="{{ asset($img->image) }}" alt="Foto Tambahan" class="rounded shadow-sm border">
+                                    <img src="{{ asset($img->image) }}" alt="Foto Tambahan" width="80"class="rounded shadow-sm border">
                                 @endforeach
                             </div>
                         @else
@@ -151,7 +151,7 @@
                 <option value="PMN">PMN</option>
                 <option value="PPLG">PPLG</option>
                 <option value="HTL">HTL</option>
-                <option value="TJKT">TKJ</option>
+                <option value="TJKT">TJKT</option>
             </select>
             @error('kategori')
                 <small class="text-danger">{{ $message }}</small>

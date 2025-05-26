@@ -117,7 +117,7 @@
     <h2 class="section-title text-center mb-5 fw-bold">Produk & Layanan Unggulan</h2>
 
     <div class="row g-4">
-      @foreach($produks->take(4) as $produk)
+      @foreach($produks->take(6) as $produk)
         <div class="col-lg-4 col-md-6">
           <div class="card h-100 shadow rounded-4 text-center">
             <div class="overflow-hidden rounded-top-4" style="height: 200px;">

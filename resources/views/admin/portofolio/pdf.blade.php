@@ -16,7 +16,7 @@
         }
         .main-image {
             width: 100%;
-            max-width: 300px;
+            max-width: 200px;
             height: auto;
             margin-bottom: 20px;
         }
@@ -27,7 +27,7 @@
         }
         .gallery img {
             width: 100%;
-            max-width: 300px;
+            max-width: 200px;
             height: auto;
             padding: 4px;
         }

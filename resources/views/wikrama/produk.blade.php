@@ -32,17 +32,17 @@
           <option value="PMN">PMN</option>
           <option value="PPLG">PPLG</option>
           <option value="HTL">HTL</option>
-          <option value="TJKT">TKJ</option>
+          <option value="TJKT">TJKT</option>
         </select>
       </div>
     </div>
 
     <!-- Daftar Produk -->
-    <div class="row g-4" id="produkContainer"></div>
+    <div class="row g-4" id="produkContainer" data-aos="fade-up"></div>
 
     <!-- Notifikasi Tidak Ditemukan -->
-    <div id="notFoundMessage" class="text-center text-muted mt-4 d-none">
-      <p class="mt-2">Oops! Portofolio yang kamu cari belum tersedia.</p>
+    <div id="notFoundMessage" class="text-center text-muted mt-4 d-none" data-aos="fade-up">
+      <p class="mt-2">Oops! Produk & Layanan yang kamu cari belum tersedia.</p>
     </div>
 
     <!-- Tombol Load More -->
@@ -67,7 +67,7 @@
 
           <!-- Deskripsi -->
           <div class="flex-grow-1">
-            <h6 class="fw-bold mb-2">Pembuatan Website</h6>
+            <h6 class="fw-bold mb-2">Website Siap Pakai</h6>
             <p class="text-muted small mb-0">Jasa pembuatan website untuk UMKM, sekolah, portofolio, toko online, dan lainnya.</p>
           </div>
 

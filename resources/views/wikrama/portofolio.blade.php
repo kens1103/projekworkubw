@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+<style>
+  body.modal-open {
+  overflow-y: auto !important;
+  }
+</style>
+
 @section('content')
 <!-- HERO SECTION -->
 <section class="bg-light">
@@ -33,7 +39,7 @@
           <option value="PMN">PMN</option>
           <option value="PPLG">PPLG</option>
           <option value="HTL">HTL</option>
-          <option value="TKJ">TKJ</option>
+          <option value="TJKT">TJKT</option>
         </select>
       </div>
     </div>
@@ -55,7 +61,7 @@
       </div>
 
       <!-- MODAL -->
-      <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
+      <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true" data-bs-backdrop="false">
         <div class="modal-dialog modal-lg modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
@@ -114,7 +120,7 @@
     </div>
 
     <!-- Notifikasi Tidak Ditemukan -->
-    <div id="notFoundMessage" class="text-center text-muted mt-4 d-none">
+    <div id="notFoundMessage" class="text-center text-muted mt-4 d-none" data-aos="fade-up">
       <p class="mt-2">Oops! Portofolio yang kamu cari belum tersedia.</p>
     </div>
 
