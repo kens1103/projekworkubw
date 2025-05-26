@@ -40,6 +40,11 @@
     <!-- Daftar Produk -->
     <div class="row g-4" id="produkContainer"></div>
 
+    <!-- Notifikasi Tidak Ditemukan -->
+    <div id="notFoundMessage" class="text-center text-muted mt-4 d-none">
+      <p class="mt-2">Oops! Portofolio yang kamu cari belum tersedia.</p>
+    </div>
+
     <!-- Tombol Load More -->
     <div class="text-center mt-4">
       <button id="loadMoreBtn" class="btn btn-outline-dark rounded-pill px-4 py-2" style="display: none;">Lihat Lebih Lanjut</button>
@@ -166,16 +171,31 @@
 </div>
 
 <script>
-  let currentCount = 6;
   const allProduks = @json($produks);
   const container = document.getElementById('produkContainer');
   const loadBtn = document.getElementById('loadMoreBtn');
   const kategoriSelect = document.getElementById('kategoriSelect');
   const searchInput = document.getElementById('searchInput');
+  const notFoundMessage = document.getElementById('notFoundMessage');
+  let currentCount = 6;
 
-  function renderProduk(produkList) {
+  function showModal(title, description, image) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDescription').textContent = description;
+    document.getElementById('modalImage').src = image;
+    const modal = new bootstrap.Modal(document.getElementById('produkModal'));
+    modal.show();
+  }
+
+  function renderProduk(list) {
     container.innerHTML = '';
-    produkList.forEach(produk => {
+    if (list.length === 0) {
+      notFoundMessage.classList.remove('d-none');
+      return;
+    }
+
+    notFoundMessage.classList.add('d-none');
+    list.slice(0, currentCount).forEach(produk => {
       const col = document.createElement('div');
       col.className = 'col-lg-4 col-md-6';
       col.innerHTML = `
@@ -191,47 +211,39 @@
       `;
       container.appendChild(col);
     });
+
+    loadBtn.style.display = list.length > currentCount ? 'inline-block' : 'none';
   }
 
   function filterProduk() {
     const kategori = kategoriSelect.value.toLowerCase();
-    const searchTerm = searchInput.value.toLowerCase();
+    const search = searchInput.value.toLowerCase();
 
-    let filtered = allProduks.filter(p => {
-      const matchKategori = !kategori || p.kategori.toLowerCase() === kategori;
-      const matchSearch = !searchTerm || p.title.toLowerCase().includes(searchTerm) || p.description.toLowerCase().includes(searchTerm);
-      return matchKategori && matchSearch;
-    });
+    const filtered = allProduks.filter(p => 
+      (!kategori || p.kategori.toLowerCase() === kategori) &&
+      (!search || p.title.toLowerCase().includes(search) || p.description.toLowerCase().includes(search))
+    );
 
-    renderProduk(filtered.slice(0, currentCount));
-    loadBtn.style.display = (filtered.length > currentCount) ? 'block' : 'none';
+    renderProduk(filtered);
   }
 
-  function showModal(title, description, image) {
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalDescription').textContent = description;
-    document.getElementById('modalImage').src = image;
-    new bootstrap.Modal(document.getElementById('produkModal')).show();
-  }
-
-  // Initial render
-  renderProduk(allProduks.slice(0, currentCount));
-
-  // Event listeners
-  kategoriSelect?.addEventListener('change', () => {
+  kategoriSelect.addEventListener('change', () => {
     currentCount = 6;
     filterProduk();
   });
 
-  searchInput?.addEventListener('input', () => {
+  searchInput.addEventListener('input', () => {
     currentCount = 6;
     filterProduk();
   });
 
-  loadBtn?.addEventListener('click', () => {
-    currentCount += 3;
+  loadBtn.addEventListener('click', () => {
+    currentCount += 6;
     filterProduk();
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProduk(allProduks);
   });
 </script>
-
 @endsection

@@ -38,6 +38,7 @@
       </div>
     </div>
 
+    <!-- Daftar Portofolio -->
     <div class="row g-4" id="katalog-container">
       @foreach($portofolios as $item)
       <div class="col-md-6 col-lg-3 katalog-item" data-kategori="{{ $item->kategori }}" data-title="{{ strtolower($item->title) }}" data-aos="fade-up">
@@ -111,6 +112,12 @@
       </div>
       @endforeach
     </div>
+
+    <!-- Notifikasi Tidak Ditemukan -->
+    <div id="notFoundMessage" class="text-center text-muted mt-4 d-none">
+      <p class="mt-2">Oops! Portofolio yang kamu cari belum tersedia.</p>
+    </div>
+
     <!-- Lihat Lebih Banyak -->
     <div class="text-center mt-4">
       <button class="btn btn-dark" id="loadMoreBtn">Lihat Lebih Banyak</button>
@@ -165,6 +172,7 @@
         loadMoreBtn.style.display = 'inline-block';
       }
 
+      // Tampilkan notifikasi jika tidak ada item yang ditampilkan
       if (shownCount === 0) {
         notFoundMessage.classList.remove('d-none');
       } else {
