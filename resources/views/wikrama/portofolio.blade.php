@@ -7,7 +7,7 @@
     <img src="/img/header.jpg" class="w-100 h-100 object-fit-cover" alt="About Image">
     <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
     <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
-      <h1 class="display-5 fw-bold">Katalog Portofolio</h1>
+      <h1 class="display-5 fw-bold">Portofolio</h1>
       <p class="fs-6 mt-3">Kumpulan karya terbaik dari UBW TeFa Wikrama 1 Garut.</p>
     </div>
   </div>
@@ -17,7 +17,7 @@
 <section class="py-5">
   <div class="container" data-aos="fade-up">
     <div class="section-title text-center mb-5">
-      <h2 class="fw-bold" data-aos="fade-up">Katalog Portofolio</h2>
+      <h2 class="fw-bold" data-aos="fade-up">Portofolio</h2>
     </div>
 
     <!-- Search dan Filter Kategori -->
