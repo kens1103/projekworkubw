@@ -30,9 +30,9 @@
                 style="background-color: #f8f9fa;">
           <option value="">Semua Kategori</option>
           <option value="PMN">PMN</option>
-          <option value="RPL">PPLG</option>
-          <option value="DKV">HTL</option>
-          <option value="TKJ">TKJ</option>
+          <option value="PPLG">PPLG</option>
+          <option value="HTL">HTL</option>
+          <option value="TJKT">TKJ</option>
         </select>
       </div>
     </div>
@@ -52,7 +52,6 @@
   <div class="container">
     <h2 class="section-title text-center mb-5 fw-bold" data-aos="fade-up">Informasi Produk & Layanan</h2>
     <div class="row justify-content-center g-4">
-
       <!-- Fitur 1 -->
       <div class="col-12" data-aos="fade-right">
         <div class="d-flex bg-light p-3 rounded-4 shadow-sm position-relative align-items-center mx-auto" style="min-height: 140px; max-width: 800px;">

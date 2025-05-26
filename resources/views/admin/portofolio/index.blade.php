@@ -151,7 +151,7 @@
                 <option value="PMN">PMN</option>
                 <option value="PPLG">PPLG</option>
                 <option value="HTL">HTL</option>
-                <option value="TKJ">TKJ</option>
+                <option value="TJKT">TKJ</option>
             </select>
             @error('kategori')
                 <small class="text-danger">{{ $message }}</small>
